@@ -1,0 +1,190 @@
+ncycles<-54
+
+mcresults_CLTIclopi<-data.frame(matrix(nrow=mcruns,ncol=2))
+colnames(mcresults_CLTIclopi)<-c("Cost","QALY")
+
+for(j in 1:mcruns){
+  n<-markovn2[j,4]
+  source(file.path(root,"PSA model","Data","PSA - Transition probabilities.R"))
+  source(file.path(root,"PSA model","Data","PSA - Costs.R"))
+  source(file.path(root,"PSA model","Data","PSA - Utilities.R"))
+  #Transition Matrix            
+  transmat<-matrix(c(probAtoA_6monthC,probAtoB_6monthC,probAtoC_6monthC,0,probAtoE_6monthC,0,0,probAtoAH_6monthC,0,0,0,0,0,0,probAtoAI_6monthC,0,0,0,0,0,0,probAtoJ_6monthC,p_death,
+                     0,probBtoB_6monthC,0,probBtoD_6monthC,probBtoE_6monthC,0,0,0,probBtoBH_6monthC,0,0,0,0,0,0,probBtoBI_6monthC,0,0,0,0,0,probBtoJ_6monthC,p_death,
+                     0,probCtoB_6monthC,probCtoC_6monthC,0,probCtoE_6monthC,0,probCtoG_6monthC,0,0,probCtoCH_6monthC,0,0,0,0,0,0,probCtoCI_6monthC,0,0,0,0,probCtoJ_6monthC,p_death,
+                     0,0,0,probDtoD_6monthC,probDtoE_6monthC,probDtoF_6monthC,0,0,0,0,probDtoDH_6monthC,0,0,0,0,0,0,probDtoDI_6monthC,0,0,0,probDtoJ_6monthC,p_death,
+                     0,0,0,0,probEtoE_6monthC,0,0,0,0,0,0,probEtoEH_6monthC,0,0,0,0,0,0,probEtoEI_6monthC,0,0,probEtoJ_6monthC,p_death,
+                     0,0,0,0,probFtoE_6monthC,probFtoF_6monthC,0,0,0,0,0,0,probFtoFH_6monthC,0,0,0,0,0,0,probFtoFI_6monthC,0,probFtoJ_6monthC,p_death,
+                     0,probGtoB_6monthC,0,0,probGtoE_6monthC,0,probGtoG_6monthC,0,0,0,0,0,0,probGtoGH_6monthC,0,0,0,0,0,0,probGtoGI_6monthC,probGtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,probAHtoA_6monthC,0,0,0,0,0,0,0,0,0,0,0,0,0,probAHtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,0,probBHtoB_6monthC,0,0,0,0,0,0,0,0,0,0,0,0,probBHtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,0,0,probCHtoC_6monthC,0,0,0,0,0,0,0,0,0,0,0,probCHtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,0,0,0,probDHtoD_6monthC,0,0,0,0,0,0,0,0,0,0,probDHtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,probEHtoE_6monthC,0,0,0,0,0,0,0,0,0,probEHtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,probFHtoF_6monthC,0,0,0,0,0,0,0,0,probFHtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,probGHtoG_6monthC,0,0,0,0,0,0,0,probGHtoJ_6monthC,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,probAItoA_6month,0,0,0,0,0,0,probAItoJ_6month,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probBItoB_6month,0,0,0,0,0,probBItoJ_6month,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probCItoC_6month,0,0,0,0,probCItoJ_6month,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probDItoD_6month,0,0,0,probDItoJ_6month,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probEItoE_6month,0,0,probEItoJ_6month,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probFItoF_6month,0,probFItoJ_6month,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probGItoG_6month,probGItoJ_6month,p_death,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1),
+                   nrow=23,byrow=T)
+  startdist<-c(0,n,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+  
+  rownames(transmat)<-colnames(transmat)<-statenames
+  
+  markovtrace<-matrix(data=NA,
+                      nrow=ncycles+1,
+                      ncol=nstates,
+                      dimnames=list(NULL,statenames))
+  markovtrace[1,]<-startdist
+  
+  translist<-list()
+  
+  for(i in 1:ncycles){
+    
+    p_death<-as.numeric(acm_clti[i,2])
+    
+    probAtoA_6monthC<-1-(probAtoB_6monthC+probAtoC_6monthC+probAtoE_6monthC+probAtoAH_6monthC+probAtoAI_6monthC+probAtoJ_6monthC+p_death)
+    probBtoB_6monthC<-1-(probBtoD_6monthC+probBtoE_6monthC+probBtoBH_6monthC+probBtoBI_6monthC+probBtoJ_6monthC+p_death)
+    probCtoC_6monthC<-1-(probCtoB_6monthC+probCtoE_6monthC+probCtoG_6monthC+probCtoCH_6monthC+probCtoCI_6monthC+probCtoJ_6monthC+p_death)
+    probDtoD_6monthC<-1-(probDtoE_6monthC+probDtoF_6monthC+probDtoDH_6monthC+probDtoDI_6monthC+probDtoJ_6monthC+p_death)
+    probEtoE_6monthC<-1-(probEtoEH_6monthC+probEtoEI_6monthC+probEtoJ_6monthC+p_death)
+    probFtoF_6monthC<-1-(probFtoE_6monthC+probFtoFH_6monthC+probFtoFI_6monthC+probFtoJ_6monthC+p_death)
+    probGtoG_6monthC<-1-(probGtoB_6monthC+probGtoE_6monthC+probGtoGH_6monthC+probGtoGI_6monthC+probGtoJ_6monthC+p_death)
+    
+    probAHtoA_6monthC<-1-probAHtoJ_6monthC-p_death
+    probBHtoB_6monthC<-1-probBHtoJ_6monthC-p_death
+    probCHtoC_6monthC<-1-probCHtoJ_6monthC-p_death
+    probDHtoD_6monthC<-1-probDHtoJ_6monthC-p_death
+    probEHtoE_6monthC<-1-probEHtoJ_6monthC-p_death
+    probFHtoF_6monthC<-1-probFHtoJ_6monthC-p_death
+    probGHtoG_6monthC<-1-probGHtoJ_6monthC-p_death
+    
+    probAItoA_6month<-1-(p_death+probAItoJ_6month)
+    probBItoB_6month<-1-(p_death+probBItoJ_6month)
+    probCItoC_6month<-1-(p_death+probCItoJ_6month)
+    probDItoD_6month<-1-(p_death+probDItoJ_6month)
+    probEItoE_6month<-1-(p_death+probEItoJ_6month)
+    probFItoF_6month<-1-(p_death+probFItoJ_6month)
+    probGItoG_6month<-1-(p_death+probGItoJ_6month)
+    
+    transmat<-matrix(c(probAtoA_6monthC,probAtoB_6monthC,probAtoC_6monthC,0,probAtoE_6monthC,0,0,probAtoAH_6monthC,0,0,0,0,0,0,probAtoAI_6monthC,0,0,0,0,0,0,probAtoJ_6monthC,p_death,
+                       0,probBtoB_6monthC,0,probBtoD_6monthC,probBtoE_6monthC,0,0,0,probBtoBH_6monthC,0,0,0,0,0,0,probBtoBI_6monthC,0,0,0,0,0,probBtoJ_6monthC,p_death,
+                       0,probCtoB_6monthC,probCtoC_6monthC,0,probCtoE_6monthC,0,probCtoG_6monthC,0,0,probCtoCH_6monthC,0,0,0,0,0,0,probCtoCI_6monthC,0,0,0,0,probCtoJ_6monthC,p_death,
+                       0,0,0,probDtoD_6monthC,probDtoE_6monthC,probDtoF_6monthC,0,0,0,0,probDtoDH_6monthC,0,0,0,0,0,0,probDtoDI_6monthC,0,0,0,probDtoJ_6monthC,p_death,
+                       0,0,0,0,probEtoE_6monthC,0,0,0,0,0,0,probEtoEH_6monthC,0,0,0,0,0,0,probEtoEI_6monthC,0,0,probEtoJ_6monthC,p_death,
+                       0,0,0,0,probFtoE_6monthC,probFtoF_6monthC,0,0,0,0,0,0,probFtoFH_6monthC,0,0,0,0,0,0,probFtoFI_6monthC,0,probFtoJ_6monthC,p_death,
+                       0,probGtoB_6monthC,0,0,probGtoE_6monthC,0,probGtoG_6monthC,0,0,0,0,0,0,probGtoGH_6monthC,0,0,0,0,0,0,probGtoGI_6monthC,probGtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,probAHtoA_6monthC,0,0,0,0,0,0,0,0,0,0,0,0,0,probAHtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,0,probBHtoB_6monthC,0,0,0,0,0,0,0,0,0,0,0,0,probBHtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,0,0,probCHtoC_6monthC,0,0,0,0,0,0,0,0,0,0,0,probCHtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,0,0,0,probDHtoD_6monthC,0,0,0,0,0,0,0,0,0,0,probDHtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,probEHtoE_6monthC,0,0,0,0,0,0,0,0,0,probEHtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,probFHtoF_6monthC,0,0,0,0,0,0,0,0,probFHtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,probGHtoG_6monthC,0,0,0,0,0,0,0,probGHtoJ_6monthC,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,probAItoA_6month,0,0,0,0,0,0,probAItoJ_6month,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probBItoB_6month,0,0,0,0,0,probBItoJ_6month,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probCItoC_6month,0,0,0,0,probCItoJ_6month,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probDItoD_6month,0,0,0,probDItoJ_6month,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probEItoE_6month,0,0,probEItoJ_6month,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probFItoF_6month,0,probFItoJ_6month,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,probGItoG_6month,probGItoJ_6month,p_death,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1),
+                     nrow=23,byrow=T)
+    
+    if(run_tests){
+      check_transition_rows(transmat)
+      check_negative_transitions(transmat)
+    }
+    
+    markovtrace[1+i,]<-markovtrace[i,] %*% transmat
+    translist[[i]]<-markovtrace[i,]*transmat
+  }
+  
+  translist[[5]]
+  
+  markovtrace<-as.data.frame(markovtrace)
+  
+  markovtrace[,"SixMonths"]<-c(0:ncycles)
+  
+  markovtrace["Cost"]<-(markovtrace["IC"]*costA_C)+
+    (markovtrace["CLTI"]*costB_C)+
+    (markovtrace["RevascIC"]*costC_C)+
+    (markovtrace["RevascCLTI"]*costD_C)+
+    (markovtrace["Amputation"]*costE_C)+
+    (markovtrace["ReintCLTI"]*costF_C)+
+    (markovtrace["ReintIC"]*costG_C)+
+    (markovtrace["ICStroke"]*costAH_C)+
+    (markovtrace["CLTIStroke"]*costBH_C)+
+    (markovtrace["RevascICStroke"]*costCH_C)+
+    (markovtrace["RevascCLTIStroke"]*costDH_C)+
+    (markovtrace["AmputationStroke"]*costEH_C)+
+    (markovtrace["ReintCLTIStroke"]*costFH_C)+
+    (markovtrace["ReintICStroke"]*costGH_C)+
+    (markovtrace["ICMI"]*costAI_C)+
+    (markovtrace["CLTIMI"]*costBI_C)+
+    (markovtrace["RevascICMI"]*costCI_C)+
+    (markovtrace["RevascCLTIMI"]*costDI_C)+
+    (markovtrace["AmputationMI"]*costEI_C)+
+    (markovtrace["ReintCLTIMI"]*costFI_C)+
+    (markovtrace["ReintICMI"]*costGI_C)+
+    (markovtrace["VascularDeath"]*costJ)+
+    (markovtrace["OtherDeath"]*costK)
+  
+  markovtrace["QALY"]<-(markovtrace["IC"]*qolAc)+
+    (markovtrace["CLTI"]*qolBc)+
+    (markovtrace["RevascIC"]*qolCc)+
+    (markovtrace["RevascCLTI"]*qolDc)+
+    (markovtrace["Amputation"]*qolEc)+
+    (markovtrace["ReintCLTI"]*qolFc)+
+    (markovtrace["ReintIC"]*qolGc)+
+    (markovtrace["ICStroke"]*qolAHc)+
+    (markovtrace["CLTIStroke"]*qolBHc)+
+    (markovtrace["RevascICStroke"]*qolCHc)+
+    (markovtrace["RevascCLTIStroke"]*qolDHc)+
+    (markovtrace["AmputationStroke"]*qolEHc)+
+    (markovtrace["ReintCLTIStroke"]*qolFHc)+
+    (markovtrace["ReintICStroke"]*qolGHc)+
+    (markovtrace["ICMI"]*qolAIc)+
+    (markovtrace["CLTIMI"]*qolBIc)+
+    (markovtrace["RevascICMI"]*qolCIc)+
+    (markovtrace["RevascCLTIMI"]*qolDIc)+
+    (markovtrace["AmputationMI"]*qolEIc)+
+    (markovtrace["ReintCLTIMI"]*qolFIc)+
+    (markovtrace["ReintICMI"]*qolGIc)+
+    (markovtrace["VascularDeath"]*qolJ)+
+    (markovtrace["OtherDeath"]*qolK)
+  
+  trans_cost_mat <- matrix(0, nrow=nstates, ncol=nstates,
+                           dimnames=list(statenames, statenames))
+  
+  trans_cost_num <- unname(as.matrix(trans_cost_mat))
+  
+  tot_trans_cost<-data.frame(matrix(nrow=54,ncol=23))
+  
+  for(i in 1:54){
+    
+    df <- 1/(1+discountrate)^(i/2)
+    
+    tot_trans_cost[i] <- 
+      sum(translist[[i]] * trans_cost_mat * df)
+  }
+  
+  sum(tot_trans_cost)
+  
+  markovtrace["disc"]<-1/((1+discountrate)^(markovtrace["SixMonths"]*0.5))
+  markovtrace["disccost"]<-markovtrace["Cost"]*
+    markovtrace["disc"]
+  markovtrace["discqaly"]<-markovtrace["QALY"]*
+    markovtrace["disc"]
+  
+  results<-c(sum(markovtrace["disccost"]+(n*costTest)+sum(rowSums(tot_trans_cost))),sum(markovtrace["discqaly"]))
+  mcresults_CLTIclopi[j,]<-results
+}
+  
