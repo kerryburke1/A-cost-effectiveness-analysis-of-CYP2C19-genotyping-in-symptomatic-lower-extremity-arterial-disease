@@ -29,10 +29,6 @@ root <- "C:/Users/Kerry/Documents/Github/A-cost-effectiveness-analysis-of-CYP2C1
 source(file.path(root,"PSA model","Data","PSA - Transition probabilities.R"))
 source(file.path(root,"PSA model","Data","PSA - Costs.R"))
 source(file.path(root,"PSA model","Data","PSA - Utilities.R"))
-source(file.path(root,"PSA model","tests","testthat","test_transitions.R"))
-source(file.path(root,"PSA model","tests","testthat","test_trees.R"))
-source(file.path(root,"PSA model","tests","testthat","test_transitions.R"))
-source(file.path(root,"PSA model","tests","testthat","test_negatives.R"))
 
 markovn<-data.frame(matrix(nrow=mcruns,ncol=10))
 
