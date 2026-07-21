@@ -24,7 +24,7 @@ mcruns<-1000
 
 statenames<-c("IC","CLTI","RevascIC","RevascCLTI","Amputation","ReintCLTI","ReintIC","ICStroke","CLTIStroke","RevascICStroke","RevascCLTIStroke","AmputationStroke","ReintCLTIStroke","ReintICStroke","ICMI","CLTIMI","RevascICMI","RevascCLTIMI","AmputationMI","ReintCLTIMI","ReintICMI","VascularDeath","OtherDeath")
 
-root <- "C:/Users/Kerry/Documents/Github/Cost-effectiveness-analysis-of-CYP2C19-testing-in-LEAD"
+root <- "C:/Users/Kerry/Documents/Github/A-cost-effectiveness-analysis-of-CYP2C19-genotyping-in-symptomatic-lower-extremity-arterial-disease"
 
 source(file.path(root,"PSA model","Data","PSA - Transition probabilities.R"))
 source(file.path(root,"PSA model","Data","PSA - Costs.R"))
