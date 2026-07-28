@@ -202,7 +202,7 @@ for (i in 1:length(translist)){
 CLTIclopiMI<-0
 
 for (i in 1:length(translist)){
-  CLTIclopi1MI<-CLTIclopiMI+sum((translist[[i]][-c(15),15])+(translist[[i]][-c(16),16])+(translist[[i]][-c(17),17])+(translist[[i]][-c(18),18])+(translist[[i]][-c(19),19])+(translist[[i]][-c(20),20])+(translist[[i]][-c(21),21]))
+  CLTIclopiMI<-CLTIclopiMI+sum((translist[[i]][-c(15),15])+(translist[[i]][-c(16),16])+(translist[[i]][-c(17),17])+(translist[[i]][-c(18),18])+(translist[[i]][-c(19),19])+(translist[[i]][-c(20),20])+(translist[[i]][-c(21),21]))
 }
 
 CLTIclopideath<-0
