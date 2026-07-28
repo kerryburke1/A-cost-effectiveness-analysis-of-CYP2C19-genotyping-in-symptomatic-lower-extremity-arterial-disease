@@ -10,22 +10,26 @@ library("readxl")
 library("DiagrammeR")
 library("rprojroot")
 
-mixed_prescribing<-FALSE
+mixed_prescribing<-TRUE
 #FALSE = dropout go into alternate arm 1 (all on clopi), testing compared to all on clopi
 #TRUE = dropout go into alternate arm 2 (mixed prescribing), testing compared to mixed prescribing
 
 n<-138563 
 nstates<-23
 discountrate<-0.035
-run_tests=TRUE
+run_tests=FALSE
 
 statenames<-c("IC","CLTI","RevascIC","RevascCLTI","Amputation","ReintCLTI","ReintIC","ICStroke","CLTIStroke","RevascICStroke","RevascCLTIStroke","AmputationStroke","ReintCLTIStroke","ReintICStroke","ICMI","CLTIMI","RevascICMI","RevascCLTIMI","AmputationMI","ReintCLTIMI","ReintICMI","VascularDeath","OtherDeath")
 
-root <- "C:/Users/Kerry/Documents/GitHub/A-cost-effectiveness-analysis-of-CYP2C19-genotyping-in-symptomatic-lower-extremity-arterial-disease"
+root <- "C:/Users/mdxassw4/Documents/GitHub/Cost-effectiveness-analysis-of-CYP2C19-testing-in-LEAD"
 
 source(file.path(root,"Deterministic model","Data","Transition probabilities.R"))
 source(file.path(root,"Deterministic model","Data","Costs.R"))
 source(file.path(root,"Deterministic model","Data","Utilities.R"))
+source(file.path(root,"Deterministic model","tests","testthat","test_transitions.R"))
+source(file.path(root,"Deterministic model","tests","testthat","test_trees.R"))
+source(file.path(root,"Deterministic model","tests","testthat","test_transitions.R"))
+source(file.path(root,"Deterministic model","tests","testthat","test_negatives.R"))
 
 #Decision Tree 1 (IC)
 tree<-Node$new("IC")
