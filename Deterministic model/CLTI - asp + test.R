@@ -214,9 +214,3 @@ for (i in 1:length(translist)){
   CLTIasptestdeath<-CLTIasptestdeath+sum((translist[[i]][-c(22),22]))
 
 }
-
-CLTIasptestdeath<-0
-
-for (i in 1:length(translist)){
-  CLTIasptestdeath<-CLTIasptestdeath+sum((translist[[i]][,22]))
-}
