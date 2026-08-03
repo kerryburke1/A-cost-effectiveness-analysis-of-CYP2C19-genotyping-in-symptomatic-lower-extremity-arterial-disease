@@ -1,36 +1,40 @@
 #Quality of life values per 6 months
 
 #Limb states PSA
+
+clopiAEminor <- (1 - (1 - 0.0093)^0.5) * (-0.0033)
+aspAEminor <- (1 - (1 - 0.0093)^0.5) * (-0.0033)
+
+clopiAEmajor <- (1 - (1 - 0.0041)^0.5) * (-0.1426)
+aspAEmajor <- (1 - (1 - 0.0054)^0.5) * (-0.1426)
+
+
 qolAmu<-0.65    
 qolAVar<-0.002^2
 alphaA<-qolAmu*((qolAmu*(1-qolAmu))/qolAVar-1)
 betaA<-(1-qolAmu)*((qolAmu*(1-qolAmu))/qolAVar-1)
 qolA1<-rbeta(1,alphaA,betaA)
-qolAc<-qolA1+((-0.1426*0.5)*0.004113)+((-0.0033*0.5)*0.009313)
-qolAr<-qolA1+((-0.1426*0.5)*0.0155)+((-0.0033*0.5)*0.0920)
-qolAa<-qolA1+((-0.1426*0.5)*0.0054)+((-0.0033*0.5)*0.0093)
+qolAc<-qolA1+ clopiAEminor + clopiAEmajor
+qolAa<-qolA1+ aspAEminor + aspAEmajor
 
 qolBmu<-0.42    
 qolBVar<-0.144^2
 alphaB<-qolBmu*((qolBmu*(1-qolBmu))/qolBVar-1)
 betaB<-(1-qolBmu)*((qolBmu*(1-qolBmu))/qolBVar-1)
 qolB1<-rbeta(1,alphaB,betaB)
-qolBc<-qolB1+((-0.1426*0.5)*0.004113)+((-0.0033*0.5)*0.009313)
-qolBr<-qolB1+((-0.1426*0.5)*0.0155)+((-0.0033*0.5)*0.0920)
-qolBa<-qolB1+((-0.1426*0.5)*0.0054)+((-0.0033*0.5)*0.0093)
+qolBc<-qolB1+ clopiAEminor + clopiAEmajor
+qolBa<-qolB1+ aspAEminor + aspAEmajor
 
 FiveyrqolCmu<-0.07/5   
 FiveyrqolCSD<-((0.16-(-0.27))/(2*1.96))/5
 qolC1<-(rnorm(1,FiveyrqolCmu,FiveyrqolCSD))
 qolCc <- pmax(0, pmin(1, qolAc + qolC1))
-qolCr <- pmax(0, pmin(1, qolAr + qolC1))
 qolCa <- pmax(0, pmin(1, qolAa + qolC1))
 
-u_baseline <- rnorm(1, 0.5, 0.3)
+u_baseline <- rnorm(1, 0.5, 0.2)
 u_followup <- rnorm(1, 0.7, 0.2)
 qolD1 <- u_followup - u_baseline
 qolDc <- pmax(0, pmin(1, qolBc + qolD1))
-qolDr <- pmax(0, pmin(1, qolBr + qolD1))
 qolDa <- pmax(0, pmin(1, qolBa + qolD1))
 
 qolEmu<-0.54    
@@ -38,22 +42,19 @@ qolEVar<-0.076^2
 alphaE<-qolEmu*((qolEmu*(1-qolEmu))/qolEVar-1)
 betaE<-(1-qolEmu)*((qolEmu*(1-qolEmu))/qolEVar-1)
 qolE1<-rbeta(1,alphaE,betaE)
-qolEc<-qolE1+((-0.1426*0.5)*0.004113)+((-0.0033*0.5)*0.009313)
-qolEr<-qolE1+((-0.1426*0.5)*0.0155)+((-0.0033*0.5)*0.0920)
-qolEa<-qolE1+((-0.1426*0.5)*0.0054)+((-0.0033*0.5)*0.0093)
+qolEc<-qolE1+ clopiAEminor + clopiAEmajor
+qolEa<-qolE1+ aspAEminor + aspAEmajor
 
-u_baseline <- rnorm(1, 0.5, 0.3)
+u_baseline <- rnorm(1, 0.5, 0.2)
 u_followup <- rnorm(1, 0.7, 0.2)
 qolF1 <- u_followup - u_baseline
 qolFc <- pmax(0, pmin(1, qolDc + qolF1))
-qolFr <- pmax(0, pmin(1, qolDr + qolF1))
 qolFa <- pmax(0, pmin(1, qolDa + qolF1))
 
 FiveyrqolGmu<-0.07/5   
 FiveyrqolGSD<-((0.16-(-0.27))/(2*1.96))/5
 qolG1<-(rnorm(1,FiveyrqolGmu,FiveyrqolGSD))
 qolGc <- pmax(0, pmin(1, qolCc + qolG1))
-qolGr <- pmax(0, pmin(1, qolCr + qolG1))
 qolGa <- pmax(0, pmin(1, qolCa + qolG1))
 
 #Stroke PSA
