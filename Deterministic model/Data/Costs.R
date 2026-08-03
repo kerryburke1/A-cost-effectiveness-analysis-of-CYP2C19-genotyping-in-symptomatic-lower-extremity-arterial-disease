@@ -83,7 +83,7 @@ costDI_A<-((((190+4340)+(230+5610))/2)*costinflator_2020_21_to_2024) +costAsp+co
 costEI_C<-((((190+4340)+(230+5610))/2)*costinflator_2020_21_to_2024) +costClopi+costClopiAE
 costEI_A<-((((190+4340)+(230+5610))/2)*costinflator_2020_21_to_2024) +costAsp+costAspAE
 
-costFI_C<-((((190+4340)+(230+5610))/2)*ccostinflator_2020_21_to_2024) +costClopi+costClopiAE
+costFI_C<-((((190+4340)+(230+5610))/2)*costinflator_2020_21_to_2024) +costClopi+costClopiAE
 costFI_A<-((((190+4340)+(230+5610))/2)*costinflator_2020_21_to_2024) +costAsp+costAspAE
 
 costGI_C<-((((190+4340)+(230+5610))/2)*costinflator_2020_21_to_2024) +costClopi+costClopiAE
