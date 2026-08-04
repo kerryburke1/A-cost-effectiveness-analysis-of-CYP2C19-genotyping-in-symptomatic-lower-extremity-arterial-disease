@@ -1,6 +1,6 @@
 #MACE transition probabilities
 
-probAtoAI_1_91yr<-68/3223  
+probAtoAI_1_91yr<-50/3223  
 AtoAIrate<- -log(1-probAtoAI_1_91yr)/1.91
 probAtoAI_6monthB<-1-exp(-0.5*AtoAIrate)
 
@@ -14,14 +14,14 @@ probAtoAI_6monthC <- 1 - exp(-h_noLOF * 0.5)
 probGtoGI_6monthC<-probCtoCI_6monthC<-probAtoAI_6monthC
 probEtoEI_6monthC<-probFtoFI_6monthC<-probDtoDI_6monthC<-probBtoBI_6monthC<-probAtoAI_6monthC
 
-probAtoAI_1_91yr<-108/3229  
+probAtoAI_1_91yr<-81/3229  
 AtoAIrate<--log(1-probAtoAI_1_91yr)/1.91
 probAtoAI_6monthA <-1-exp(-0.5*AtoAIrate)
 
 probGtoGI_6monthA<-probCtoCI_6monthA<-probAtoAI_6monthA
 probEtoEI_6monthA<-probFtoFI_6monthA<-probDtoDI_6monthA<-probBtoBI_6monthA<-probAtoAI_6monthA
 
-probAtoAH_1_9yr<-81/3223 
+probAtoAH_1_9yr<-70/3223 
 AtoAHrate<--log(1-probAtoAH_1_9yr)/1.9
 probAtoAH_6monthB <-1-exp(-0.5*AtoAHrate)
 
@@ -35,7 +35,7 @@ probAtoAH_6monthC <- 1 - exp(-h_noLOF * 0.5)
 probGtoGH_6monthC<-probCtoCH_6monthC<-probAtoAH_6monthC
 probEtoEH_6monthC<-probFtoFH_6monthC<-probDtoDH_6monthC<-probBtoBH_6monthC<-probAtoAH_6monthC
 
-probAtoAH_1_9yr<-62/3229 
+probAtoAH_1_9yr<-74/3229 
 AtoAHrate<--log(1-probAtoAH_1_9yr)/1.9
 probAtoAH_6monthA <-1-exp(-0.5*AtoAHrate)
 

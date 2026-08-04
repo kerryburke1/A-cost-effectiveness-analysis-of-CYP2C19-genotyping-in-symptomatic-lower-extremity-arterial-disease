@@ -32,7 +32,6 @@ for (i in 1:mcruns){
   #Decision Tree 1 (IC)
   tree<-Node$new("IC")
   tree$AddChild("Genotyping")
-  tree$AddChild("NoGenotyping")
   tree$AddChild("NoGenotyping_allClopi")
   tree$NoGenotyping$p<-ifelse(mixed_prescribing,1,0)
   tree$NoGenotyping_allClopi$p<-ifelse(mixed_prescribing,0,1)
@@ -77,8 +76,8 @@ for (i in 1:mcruns){
     check_tree_probs(tree)}
   
   markovn[i,]=n*leaf_probs[,2]
-  
 }
+
 markovn
 n<-34640 
 

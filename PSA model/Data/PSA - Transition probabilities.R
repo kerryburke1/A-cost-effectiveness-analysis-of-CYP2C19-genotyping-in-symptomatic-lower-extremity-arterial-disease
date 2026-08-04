@@ -1,6 +1,6 @@
 #MACE transition probabilities
 
-probAtoAI_1_91yr<-rbeta(1,68,3155)
+probAtoAI_1_91yr<-rbeta(1,50,3173)
 AtoAIrate<- -log(1-probAtoAI_1_91yr)/1.91
 probAtoAI_6monthB<-1-exp(-0.5*AtoAIrate)
 
