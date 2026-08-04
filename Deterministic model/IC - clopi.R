@@ -1,5 +1,5 @@
 ncycles<-66
-n<-markovn[4]
+n<-markovn[2]
 
 #Transition Matrix            
 transmat<-matrix(c(probAtoA_6monthC,probAtoB_6monthC,probAtoC_6monthC,0,probAtoE_6monthC,0,0,probAtoAH_6monthC,0,0,0,0,0,0,probAtoAI_6monthC,0,0,0,0,0,0,probAtoJ_6monthC,p_death,
