@@ -4,7 +4,7 @@ mcresults_ICnotest1<-data.frame(matrix(nrow=mcruns,ncol=2))
 colnames(mcresults_ICnotest1)<-c("Cost","QALY")
 
 for(j in 1:mcruns){
-  n<-markovn[j,10]
+  n<-markovn[j,4]
   source(file.path(root,"PSA model","Data","PSA - Transition probabilities.R"))
   source(file.path(root,"PSA model","Data","PSA - Costs.R"))
   source(file.path(root,"PSA model","Data","PSA - Utilities.R"))
