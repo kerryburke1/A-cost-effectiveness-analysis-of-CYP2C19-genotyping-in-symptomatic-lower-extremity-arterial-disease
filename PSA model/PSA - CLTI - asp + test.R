@@ -5,7 +5,7 @@ mcresults_CLTIasptest<-data.frame(matrix(nrow=mcruns,ncol=2))
 colnames(mcresults_CLTIasptest)<-c("Cost","QALY")
 
 for(j in 1:mcruns){
-  n<-markovn2[j,6]
+  n<-markovn2[j,3]
   source(file.path(root,"PSA model","Data","PSA - Transition probabilities.R"))
   source(file.path(root,"PSA model","Data","PSA - Costs.R"))
   source(file.path(root,"PSA model","Data","PSA - Utilities.R"))
