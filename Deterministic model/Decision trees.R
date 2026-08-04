@@ -120,18 +120,12 @@ markovn2=n*leaf_probs[,2]
 print(markovn2)
 
 source(file.path(root,"Deterministic model","IC - clopi no test1.R"))
-source(file.path(root,"Deterministic model","IC - clop no test2.R"))
 source(file.path(root,"Deterministic model","IC - clopi no test3.R"))
 source(file.path(root,"Deterministic model","IC - clopi.R"))
-source(file.path(root,"Deterministic model","IC - asp1.R"))
-source(file.path(root,"Deterministic model","IC - asp2.R"))
 source(file.path(root,"Deterministic model","IC - asp + test.R"))
 source(file.path(root,"Deterministic model","CLTI - clopi no test1.R"))
-source(file.path(root,"Deterministic model","CLTI - clopi no test2.R"))
 source(file.path(root,"Deterministic model","CLTI - clopi no test3.R"))
 source(file.path(root,"Deterministic model","CLTI - clopi.R"))
-source(file.path(root,"Deterministic model","CLTI - asp1.R"))
-source(file.path(root,"Deterministic model","CLTI - asp2.R"))  
 source(file.path(root,"Deterministic model","CLTI - asp + test.R"))
 
 #total costs and QALYs
