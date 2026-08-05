@@ -136,8 +136,8 @@ source(file.path(root,"Deterministic model","CLTI - rivasp + test.R"))
 
 #total costs and QALYs
 #IC testing (clopi dropout)
-total_cost1 = (ICclopi[1]+ICasptest[1]+ICnotest3[1]) / 138563
-total_qaly1 = (ICclopi[2]+ICasptest[2]+ICnotest3[2]) / 138563
+total_cost1 = (ICclopi[1]+ICasptest[1]+ICrivasptest[1]+ICnotest3[1]) / 138563
+total_qaly1 = (ICclopi[2]+ICasptest[2]+ICrivasptest[2]+ICnotest3[2]) / 138563
 print(total_cost1)
 print(total_qaly1)
 
@@ -148,8 +148,8 @@ print(total_cost2)
 print(total_qaly2)
 
 #CLTI testing (clopi dropout)
-total_cost5 = (CLTIclopi[1]+CLTIasptest[1]+CLTInotest3[1]) / 34640 
-total_qaly5 = (CLTIclopi[2]+CLTIasptest[2]+CLTInotest3[2]) / 34640 
+total_cost5 = (CLTIclopi[1]+CLTIasptest[1]+CLTIrivasptest[1]+CLTInotest3[1]) / 34640 
+total_qaly5 = (CLTIclopi[2]+CLTIasptest[2]+CLTICrivasptest[2]+CLTInotest3[2]) / 34640 
 print(total_cost5)
 print(total_qaly5)
 
