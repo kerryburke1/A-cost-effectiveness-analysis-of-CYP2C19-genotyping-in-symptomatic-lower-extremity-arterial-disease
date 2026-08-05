@@ -34,8 +34,10 @@ tree$Genotyping$NoLOF$p <- 0.9*0.70
 tree$Genotyping$NoLOF$AddChild("ICclopi")
 tree$Genotyping$AddChild("LOF")
 tree$Genotyping$LOF$p <- 0.9*0.30
+tree$Genotyping$LOF$AddChild("ICrivasptest")
+tree$Genotyping$LOF$ICrivasptest$p <- 0.53
 tree$Genotyping$LOF$AddChild("ICasptest")
-tree$Genotyping$LOF$ICasptest$p <- 1
+tree$Genotyping$LOF$ICasptest$p <- 0.47
 
 tree$Genotyping$Dropout$AddChild("ICnotest3")
 tree$Genotyping$Dropout$ICnotest3$p<-1
@@ -83,8 +85,10 @@ tree$Genotyping$NoLOF$p <- 0.9*0.70
 tree$Genotyping$NoLOF$AddChild("CLTIclopi")
 tree$Genotyping$AddChild("LOF")
 tree$Genotyping$LOF$p <- 0.9*0.30
+tree$Genotyping$LOF$AddChild("CLTIrivasptest")
+tree$Genotyping$LOF$ICrivasptest$p <- 0.53
 tree$Genotyping$LOF$AddChild("CLTIasptest")
-tree$Genotyping$LOF$CLTIasptest$p<-1
+tree$Genotyping$LOF$ICasptest$p <- 0.47
 
 tree$Genotyping$Dropout$AddChild("CLTInotest3")
 tree$Genotyping$Dropout$CLTInotest3$p<-1
@@ -123,10 +127,12 @@ source(file.path(root,"Deterministic model","IC - clopi no test1.R"))
 source(file.path(root,"Deterministic model","IC - clopi no test3.R"))
 source(file.path(root,"Deterministic model","IC - clopi.R"))
 source(file.path(root,"Deterministic model","IC - asp + test.R"))
+source(file.path(root,"Deterministic model","IC - rivasp + test.R"))
 source(file.path(root,"Deterministic model","CLTI - clopi no test1.R"))
 source(file.path(root,"Deterministic model","CLTI - clopi no test3.R"))
 source(file.path(root,"Deterministic model","CLTI - clopi.R"))
 source(file.path(root,"Deterministic model","CLTI - asp + test.R"))
+source(file.path(root,"Deterministic model","CLTI - rivasp + test.R"))
 
 #total costs and QALYs
 #IC testing (clopi dropout)

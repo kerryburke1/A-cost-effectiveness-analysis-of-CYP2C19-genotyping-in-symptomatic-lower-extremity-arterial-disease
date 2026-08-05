@@ -21,8 +21,15 @@ probAtoAI_6monthC <- 1 - exp(-h_noLOF * 0.5)
 probGtoGI_6monthC<-probCtoCI_6monthC<-probAtoAI_6monthC
 probEtoEI_6monthC<-probFtoFI_6monthC<-probDtoDI_6monthC<-probBtoBI_6monthC<-probAtoAI_6monthC
 
-probAtoAI_1_91yr<- rbeta(1,108,3112) 
-AtoAIrate<--log(1-probAtoAI_1_91yr)/1.91
+probAtoAI_1_75yr<-rbeta(1,51,2441)
+AtoAIrate<--log(1-probAtoAI_1_75yr)/1.75
+probAtoAI_6monthR <-1-exp(-0.5*AtoAIrate)
+
+probGtoGI_6monthR<-probCtoCI_6monthR<-probAtoAI_6monthR
+probEtoEI_6monthR<-probFtoFI_6monthR<-probDtoDI_6monthR<-probBtoBI_6monthR<-probAtoAI_6monthR
+
+probAtoAI_1_75yr<-rbeta(1,67,2437)
+AtoAIrate<--log(1-probAtoAI_1_75yr)/1.75
 probAtoAI_6monthA <-1-exp(-0.5*AtoAIrate)
 
 probGtoGI_6monthA<-probCtoCI_6monthA<-probAtoAI_6monthA
@@ -66,8 +73,15 @@ probDtoJ_6monthB<-probEtoJ_6monthB<-probFtoJ_6monthB<-probBtoJ_6monthB<-probAtoJ
 probCtoJ_6monthC<-probGtoJ_6monthC<-probAtoJ_6monthC<-probAtoJ_6monthB
 probDtoJ_6monthC<-probEtoJ_6monthC<-probFtoJ_6monthC<-probBtoJ_6monthC<-probAtoJ_6monthB
 
-probAtoJ_1_9yr<-rbeta(1,78,2426) 
-AtoJrate<--log(1-probAtoJ_1_9yr)/1.9
+probAtoJ_1_75yr<-rbeta(1,64,2428)
+AtoJrate<--log(1-probAtoJ_1_75yr)/1.75
+probAtoJ_6monthR <-1-exp(-0.5*AtoJrate)
+
+probGtoJ_6monthR<-probCtoJ_6monthR<-probAtoJ_6monthR
+probEtoJ_6monthR<-probFtoJ_6monthR<-probDtoJ_6monthR<-probBtoJ_6monthR<-probAtoJ_6monthR
+
+probAtoJ_1_75yr<-rbeta(1,78,2426)
+AtoJrate<--log(1-probAtoJ_1_75yr)/1.75
 probAtoJ_6monthA<-1-exp(-0.5*AtoJrate)
 
 probGtoJ_6monthA<-probCtoJ_6monthA<-probAtoJ_6monthA
@@ -85,9 +99,16 @@ probAHtoJ_6monthC <-1-exp(-0.5*AHtoJrate)
 
 probBHtoJ_6monthC<-probCHtoJ_6monthC<-probDHtoJ_6monthC<-probEHtoJ_6monthC<-probFHtoJ_6monthC<-probGHtoJ_6monthC<-probAHtoJ_6monthC
 
-probAHtoJ_1_92yr<-rbeta(1,13,129)
-AHtoJrate<--log(1-probAHtoJ_1_92yr)/1.92
-probAHtoJ_6monthA<-1-exp(-0.5*AHtoJrate)
+probAtoAH_1_75yr<-rbeta(1,25,2467)
+AtoAHrate<--log(1-probAtoAH_1_75yr)/1.75
+probAtoAH_6monthR <-1-exp(-0.5*AtoAHrate)
+
+probGtoGH_6monthR<-probCtoCH_6monthR<-probAtoAH_6monthR
+probEtoEH_6monthR<-probFtoFH_6monthR<-probDtoDH_6monthR<-probBtoBH_6monthR<-probAtoAH_6monthR
+
+probAtoAH_1_75yr<-rbeta(1,47,2457)
+AtoAHrate<--log(1-probAtoAH_1_75yr)/1.75
+probAtoAH_6monthA <-1-exp(-0.5*AtoAHrate)
 
 probBHtoJ_6monthA<-probCHtoJ_6monthA<-probDHtoJ_6monthA<-probEHtoJ_6monthA<-probFHtoJ_6monthA<-probGHtoJ_6monthA<-probAHtoJ_6monthA
 
@@ -118,7 +139,14 @@ probAtoE_6monthB <-1-exp(-0.5*AtoErate)
 probBtoE_6monthB<-probAtoE_6monthB
 probBtoE_6monthC<-probAtoE_6monthC<-probAtoE_6monthB
 
-probAtoE_1_75yr<-rbeta(1,17,2487)
+probAtoE_1_75yr<-rbeta(1,5,2134)
+AtoErate<--log(1-probAtoE_1_75yr)/1.75
+probAtoE_6monthR <-1-exp(-0.5*AtoErate)
+
+probCtoE_6monthR<-probGtoE_6monthR<-probAtoE_6monthR
+probDtoE_6monthR<-probFtoE_6monthR<-probBtoE_6monthR<-probAtoE_6monthR
+
+probAtoE_1_75yr<-rbeta(1,15,2108)
 AtoErate<--log(1-probAtoE_1_75yr)/1.75
 probAtoE_6monthA <-1-exp(-0.5*AtoErate)
 
@@ -137,6 +165,13 @@ probCtoE_6monthC <-1-exp(-0.5*CtoErate)
 
 probGtoE_6monthC<-probCtoE_6monthC
 probFtoE_6monthC<-probDtoE_6monthC<-probCtoE_6monthC
+
+probCtoE_2_33yr<-rbeta(1,103,3183)
+CtoErate<--log(1-probCtoE_2_33yr)/2.33
+probCtoE_6monthR <-1-exp(-0.5*CtoErate)
+
+probGtoE_6monthR<-probCtoE_6monthR
+probFtoE_6monthR<-probDtoE_6monthR<-probCtoE_6monthR
 
 probCtoE_2_33yr<-rbeta(1,115,3163)
 CtoErate<--log(1-probCtoE_2_33yr)/2.33
@@ -166,6 +201,12 @@ f <- function(p_noLOF){
 }
 probCtoG_6monthC <- uniroot(f, c(1e-8, 0.999))$root
 probDtoF_6monthC <- probCtoG_6monthC
+
+probCtoG_2_33yr<-rbeta(1,584,2702)
+CtoGrate<--log(1-probCtoG_2_33yr)/2.33
+probCtoG_6monthR <-1-exp(-0.5*CtoGrate)
+
+probDtoF_6monthR<-probCtoG_6monthR
 
 probCtoG_2_33yr<-rbeta(1,655,2623)
 CtoGrate<--log(1-probCtoG_2_33yr)/2.33

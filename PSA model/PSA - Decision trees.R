@@ -40,9 +40,10 @@ for (i in 1:mcruns){
   tree$Genotyping$NoLOF$AddChild("ICclopi")
   tree$Genotyping$AddChild("LOF")
   tree$Genotyping$LOF$p<-(1-tree$Genotyping$Dropout$p)*0.2971
-
+  tree$Genotyping$LOF$AddChild("ICrivasptest")
+  tree$Genotyping$LOF$ICrivasptest$p<-rbeta(1,0.53*29,0.47*29)
   tree$Genotyping$LOF$AddChild("ICasptest")
-  tree$Genotyping$LOF$ICasptest$p<-1
+  tree$Genotyping$LOF$ICasptest$p<-1-tree$Genotyping$LOF$ICrivasptest$p
   
   tree$Genotyping$Dropout$AddChild("ICnotest3")
   tree$Genotyping$Dropout$ICnotest3$p<-1
@@ -95,8 +96,10 @@ for (i in 1:mcruns){
   tree$Genotyping$NoLOF$AddChild("CLTIclopi")
   tree$Genotyping$AddChild("LOF")
   tree$Genotyping$LOF$p<-(1-tree$Genotyping$Dropout$p)*0.2971
+  tree$Genotyping$LOF$AddChild("CLTIrivasptest")
+  tree$Genotyping$LOF$CLTIrivasptest$p<-rbeta(1,0.73*29,0.27*29)
   tree$Genotyping$LOF$AddChild("CLTIasptest")
-  tree$Genotyping$LOF$CLTIasptest$p<-1
+  tree$Genotyping$LOF$CLTIasptest$p<-1-tree$Genotyping$LOF$CLTIrivasptest$p
   
   tree$Genotyping$Dropout$AddChild("CLTInotest3")
   tree$Genotyping$Dropout$CLTInotest3$p<-1
@@ -135,10 +138,12 @@ source(file.path(root,"PSA model","PSA - IC - clopi no test1.R"))
 source(file.path(root,"PSA model","PSA - IC - clopi no test3.R"))
 source(file.path(root,"PSA model","PSA - IC - clopi.R"))
 source(file.path(root,"PSA model","PSA - IC - asp + test.R"))
+source(file.path(root,"PSA model","PSA - IC - rivasp + test.R"))
 source(file.path(root,"PSA model","PSA - CLTI - clopi no test1.R"))
 source(file.path(root,"PSA model","PSA - CLTI - clopi no test3.R"))
 source(file.path(root,"PSA model","PSA - CLTI - clopi.R"))
 source(file.path(root,"PSA model","PSA - CLTI - asp + test.R"))
+source(file.path(root,"PSA model","PSA - IC - rivasp + test.R"))
 
 #Calculate ICERS
 #IC
