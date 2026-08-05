@@ -149,7 +149,7 @@ print(total_qaly2)
 
 #CLTI testing (clopi dropout)
 total_cost5 = (CLTIclopi[1]+CLTIasptest[1]+CLTIrivasptest[1]+CLTInotest3[1]) / 34640 
-total_qaly5 = (CLTIclopi[2]+CLTIasptest[2]+CLTICrivasptest[2]+CLTInotest3[2]) / 34640 
+total_qaly5 = (CLTIclopi[2]+CLTIasptest[2]+CLTIrivasptest[2]+CLTInotest3[2]) / 34640 
 print(total_cost5)
 print(total_qaly5)
 
@@ -162,59 +162,59 @@ print(total_qaly7)
 #total amputations
 
 #IC testing arm (vs all on clopi)
-print(ICclopiamps+ICasptestamps+ICnotest3amps)
+print(ICclopiamps+ICasptestamps+ICrivaspamps+ICnotest3amps)
 #IC all on clopi
 print(ICnotest1amps)
 
 #CLTI testing arm (vs all on clopi)
-print(CLTIclopiamps+CLTIasptestamps+CLTInotest3amps)
+print(CLTIclopiamps+CLTIasptestamps+CLTIrivaspamps+CLTInotest3amps)
 #CLTI all on clopi
 print(CLTInotest1amps)
 
 #total revascs
 
 #IC testing arm (vs all on clopi)
-print(ICclopirevasc+ICasptestrevasc+ICnotest3revasc)
+print(ICclopirevasc+ICasptestrevasc+ICrivasprevasc+ICnotest3revasc)
 #IC all on clopi
 print(ICnotest1revasc)
 
 #CLTI testing arm (vs all on clopi)
-print(CLTIclopirevasc+CLTIasptestrevasc+CLTInotest3revasc)
+print(CLTIclopirevasc+CLTIasptestrevasc+CLTIrivasprevasc+CLTInotest3revasc)
 #CLTI all on clopi
 print(CLTInotest1revasc)
 
 #total strokes
 
 #IC testing arm (vs all on clopi)
-print(ICclopistroke+ICaspteststroke+ICnotest3stroke)
+print(ICclopistroke+ICaspteststroke++ICrivaspstrokes+ICnotest3stroke)
 #IC all on clopi
 print(ICnotest1stroke)
 
 #CLTI testing arm (vs all on clopi)
-print(CLTIclopistroke+CLTIaspteststroke+CLTInotest3stroke)
+print(CLTIclopistroke+CLTIaspteststroke+CLTIrivaspstroke+CLTInotest3stroke)
 #CLTI all on clopi
 print(CLTInotest1stroke)
 
 #total MIs
 
 #IC testing arm (vs all on clopi)
-print(ICclopiMI+ICasptestMI+ICnotest3MI)
+print(ICclopiMI+ICasptestMI+ICrivaspMI+ICnotest3MI)
 #IC all on clopi
 print(ICnotest1MI)
 
 #CLTI testing arm (vs all on clopi)
-print(CLTIclopiMI+CLTIasptestMI+CLTInotest3MI)
+print(CLTIclopiMI+CLTIasptestMI+CLTIrivaspMI+CLTInotest3MI)
 #CLTI all on clopi
 print(CLTInotest1MI)
 
 #total deaths
 
 #IC testing arm (vs all on clopi)
-print(ICclopideath+ICasptestdeath+ICnotest3death)
+print(ICclopideath+ICasptestdeath+ICrivaspdeath+ICnotest3death)
 #IC all on clopi
 print(ICnotest1death)
 
 #CLTI testing arm (vs all on clopi)
-print(CLTIclopideath+CLTIasptestdeath+CLTInotest3death)
+print(CLTIclopideath+CLTIasptestdeath+CLTIrivaspdeath+CLTInotest3death)
 #CLTI all on clopi
 print(CLTInotest1death)

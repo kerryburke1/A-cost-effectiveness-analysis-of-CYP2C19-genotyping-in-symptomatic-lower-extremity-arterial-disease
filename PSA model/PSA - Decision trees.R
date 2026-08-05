@@ -25,7 +25,7 @@ source(file.path(root,"PSA model","Data","PSA - Transition probabilities.R"))
 source(file.path(root,"PSA model","Data","PSA - Costs.R"))
 source(file.path(root,"PSA model","Data","PSA - Utilities.R"))
 
-markovn<-data.frame(matrix(nrow=mcruns,ncol=10))
+markovn<-data.frame(matrix(nrow=mcruns,ncol=5))
 
 for (i in 1:mcruns){
   
@@ -80,7 +80,7 @@ for (i in 1:mcruns){
 markovn
 n<-34640 
 
-markovn2<-data.frame(matrix(nrow=mcruns,ncol=10))
+markovn2<-data.frame(matrix(nrow=mcruns,ncol=5))
 
 for (i in 1:mcruns){
   
@@ -143,15 +143,15 @@ source(file.path(root,"PSA model","PSA - CLTI - clopi no test1.R"))
 source(file.path(root,"PSA model","PSA - CLTI - clopi no test3.R"))
 source(file.path(root,"PSA model","PSA - CLTI - clopi.R"))
 source(file.path(root,"PSA model","PSA - CLTI - asp + test.R"))
-source(file.path(root,"PSA model","PSA - IC - rivasp + test.R"))
+source(file.path(root,"PSA model","PSA - CLTI - rivasp + test.R"))
 
 #Calculate ICERS
 #IC
 total_cost_test_IC<-mcresults_ICnotest3[,1]+
-  mcresults_ICclopi[,1]+mcresults_ICasptest[,1]
+  mcresults_ICclopi[,1]+mcresults_ICasptest[,1]+mcresults_ICrivasptest[,1]
 print(paste("Mean cost of genotyping IC:",mean(total_cost_test_IC/138563) ))
 total_qaly_test_IC<-mcresults_ICnotest3[,2]+
-  mcresults_ICclopi[,2]+mcresults_ICasptest[,2]
+  mcresults_ICclopi[,2]+mcresults_ICasptest[,2]+mcresults_ICrivasptest[,2]
 print(paste("Mean QALYs of genotyping IC:",mean(total_qaly_test_IC/138563) ))
 
 total_cost_comp_IC<-mcresults_ICnotest1[,1]
@@ -161,16 +161,15 @@ print(paste("Mean QALYs of nogenotyping IC:",mean(total_qaly_comp_IC/138563) ))
 
 ICERS_IC<-(total_cost_test_IC-total_cost_comp_IC)/(total_qaly_test_IC-total_qaly_comp_IC)
 NB_IC<-((total_qaly_test_IC-total_qaly_comp_IC)*20000)-(total_cost_test_IC-total_cost_comp_IC)
-plot(density(NB_IC))
 PCE_IC<-mean(NB_IC>0)
 print(paste("Probability of genotyping being cost-effective IC:",PCE_IC*100,"%"))
 
 #CLTI
 total_cost_test_CLTI<-mcresults_CLTInotest3[,1]+
-  mcresults_CLTIclopi[,1]+mcresults_CLTIasptest[,1]
+  mcresults_CLTIclopi[,1]+mcresults_CLTIasptest[,1]+mcresults_CLTIrivasptest[,1]
 print(paste("Mean Cost of genotyping CLTI:",mean(total_cost_test_CLTI/34640 ) ))
 total_qaly_test_CLTI<-mcresults_CLTInotest3[,2]+
-  mcresults_CLTIclopi[,2]+mcresults_CLTIasptest[,2]
+  mcresults_CLTIclopi[,2]+mcresults_CLTIasptest[,2]+mcresults_CLTIrivasptest[,2]
 print(paste("Mean QALYs of nogenotyping CLTI:",mean(total_qaly_test_CLTI/34640 ) ))
 
 total_cost_comp_CLTI<-mcresults_CLTInotest1[,1]

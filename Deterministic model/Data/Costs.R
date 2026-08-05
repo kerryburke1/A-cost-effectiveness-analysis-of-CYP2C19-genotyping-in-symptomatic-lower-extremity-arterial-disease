@@ -41,7 +41,7 @@ costC_R<-costRivAsp+costRivAspAE
 
 costD_C<-costClopi+costClopiAE
 costD_A<-costAsp+costAspAE
-costR_R<-costRivAsp+costRivAspAE
+costD_R<-costRivAsp+costRivAspAE
 
 cost_E<-(14293.65*0.5)*costinflator_2020_21_to_2024
 costE_C<-cost_E +costClopi+costClopiAE
