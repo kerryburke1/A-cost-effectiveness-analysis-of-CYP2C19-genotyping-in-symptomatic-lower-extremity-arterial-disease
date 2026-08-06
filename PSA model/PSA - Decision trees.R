@@ -4,6 +4,7 @@ install.packages("testthat")
 install.packages("readxl")
 install.packages("DiagrammeR")
 install.packages("dampack")
+install.packages("patchwork")
 
 library("data.tree")
 library("testthat")
@@ -218,7 +219,7 @@ CLTI_psa_obj1<-make_psa_obj(cost=cost,
                             strategies=strategies,
                             currency="£")
 CLTI_ceac_obj1<-ceac(wtp=c(0,5000,10000,20000,40000,50000,100000),
-                     psa=CLTI_psa_obj)
+                     psa=CLTI_psa_obj1)
 plot(CLTI_psa_obj1)
 plot(CLTI_ceac_obj1)
 
@@ -228,7 +229,6 @@ p +
   labs(x = "Willingness to Pay (Thousand £ / QALY)")
 
 #combine into 2x2 plot
-install.packages("patchwork")
 library(patchwork)
 
 p1 <- plot(IC_ceac_obj1) + labs(title = "IC genotyping versus all on clopidogrel") +
@@ -243,5 +243,5 @@ combined <- p1 / p2
 
 combined +
   scale_x_continuous(
-    labels = function(x) paste0("£", x/1000)
+    labels = function(x) paste0("£", x)
   )
