@@ -16,8 +16,8 @@ alphaA<-qolAmu*((qolAmu*(1-qolAmu))/qolAVar-1)
 betaA<-(1-qolAmu)*((qolAmu*(1-qolAmu))/qolAVar-1)
 qolA1<-rbeta(1,alphaA,betaA)
 qolAc<-(qolA1+ clopiAEminor + clopiAEmajor) /2
-qolAa<-(qolA1+ aspAEminor + aspAEmajor) /2
-qolAr<-(qolA1+ rivaspAEminor + rivaspAEmajor) /2
+qolAa<-(qolA1+ aspAEminor + aspAEmajor) 
+qolAr<-(qolA1+ rivaspAEminor + rivaspAEmajor) 
 
 qolBmu<-0.42    
 qolBVar<-0.144^2
