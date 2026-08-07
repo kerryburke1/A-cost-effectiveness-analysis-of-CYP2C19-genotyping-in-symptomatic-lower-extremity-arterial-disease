@@ -16,8 +16,8 @@ alphaA<-qolAmu*((qolAmu*(1-qolAmu))/qolAVar-1)
 betaA<-(1-qolAmu)*((qolAmu*(1-qolAmu))/qolAVar-1)
 qolA1<-rbeta(1,alphaA,betaA)
 qolAc<-(qolA1+ clopiAEminor + clopiAEmajor) /2
-qolAa<-(qolA1+ aspAEminor + aspAEmajor) 
-qolAr<-(qolA1+ rivaspAEminor + rivaspAEmajor) 
+qolAa<-(qolA1+ aspAEminor + aspAEmajor) /2
+qolAr<-(qolA1+ rivaspAEminor + rivaspAEmajor) /2
 
 qolBmu<-0.42    
 qolBVar<-0.144^2
@@ -30,17 +30,17 @@ qolBr<-(qolB1+ rivaspAEminor + rivaspAEmajor) /2
 
 FiveyrqolCmu<-0.07/5   
 FiveyrqolCSD<-((0.16-(-0.27))/(2*1.96))/5
-qolC1<-(rnorm(1,FiveyrqolCmu,FiveyrqolCSD))
-qolCc <- (pmax(0, pmin(1, qolAc + qolC1)) ) /2
-qolCa <- (pmax(0, pmin(1, qolAa + qolC1)) ) /2
-qolCr <- (pmax(0, pmin(1, qolAr + qolC1)) ) /2
+qolC1<-(rnorm(1,FiveyrqolCmu,FiveyrqolCSD)) /2
+qolCc <- pmax(0, pmin(1, qolAc + qolC1)) 
+qolCa <- pmax(0, pmin(1, qolAa + qolC1)) 
+qolCr <- pmax(0, pmin(1, qolAr + qolC1)) 
 
 u_baseline <- rnorm(1, 0.5, 0.2)
 u_followup <- rnorm(1, 0.7, 0.2)
-qolD1 <- u_followup - u_baseline
-qolDc <- (pmax(0, pmin(1, qolBc + qolD1)) ) /2
-qolDa <- (pmax(0, pmin(1, qolBa + qolD1)) ) /2
-qolDr <- (pmax(0, pmin(1, qolBr + qolD1)) ) /2
+qolD1 <- (u_followup - u_baseline) /2
+qolDc <- pmax(0, pmin(1, qolBc + qolD1)) 
+qolDa <- pmax(0, pmin(1, qolBa + qolD1)) 
+qolDr <- pmax(0, pmin(1, qolBr + qolD1)) 
 
 qolEmu<-0.54    
 qolEVar<-0.076^2
@@ -53,17 +53,17 @@ qolEr<-(qolE1+ rivaspAEminor + rivaspAEmajor) /2
 
 u_baseline <- rnorm(1, 0.5, 0.2)
 u_followup <- rnorm(1, 0.7, 0.2)
-qolF1 <- u_followup - u_baseline
-qolFc <- (pmax(0, pmin(1, qolDc + qolF1)) ) /2
-qolFa <- (pmax(0, pmin(1, qolDa + qolF1)) ) /2
-qolFr <- (pmax(0, pmin(1, qolDr + qolF1)) ) /2
+qolF1 <- (u_followup - u_baseline) /2
+qolFc <- pmax(0, pmin(1, qolDc + qolF1)) 
+qolFa <- pmax(0, pmin(1, qolDa + qolF1)) 
+qolFr <- pmax(0, pmin(1, qolDr + qolF1)) 
 
 FiveyrqolGmu<-0.07/5   
 FiveyrqolGSD<-((0.16-(-0.27))/(2*1.96))/5
-qolG1<-(rnorm(1,FiveyrqolGmu,FiveyrqolGSD))
-qolGc <- (pmax(0, pmin(1, qolCc + qolG1)) ) /2
-qolGa <- (pmax(0, pmin(1, qolCa + qolG1)) ) /2
-qolGr <- (pmax(0, pmin(1, qolCr + qolG1)) ) /2
+qolG1<-(rnorm(1,FiveyrqolGmu,FiveyrqolGSD))/2
+qolGc <- pmax(0, pmin(1, qolCc + qolG1))
+qolGa <- pmax(0, pmin(1, qolCa + qolG1))
+qolGr <- pmax(0, pmin(1, qolCr + qolG1))
 
 #Stroke PSA
 strokemu <- -0.18
