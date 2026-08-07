@@ -16,11 +16,12 @@ library("dampack")
 n<-138563 
 nstates<-23
 discountrate<-0.035
-mcruns<-1000
+mcruns<-100
+run_tests=FALSE
 
 statenames<-c("IC","CLTI","RevascIC","RevascCLTI","Amputation","ReintCLTI","ReintIC","ICStroke","CLTIStroke","RevascICStroke","RevascCLTIStroke","AmputationStroke","ReintCLTIStroke","ReintICStroke","ICMI","CLTIMI","RevascICMI","RevascCLTIMI","AmputationMI","ReintCLTIMI","ReintICMI","VascularDeath","OtherDeath")
 
-root <- "C:/Users/Kerry/Documents/Github/A-cost-effectiveness-analysis-of-CYP2C19-genotyping-in-symptomatic-lower-extremity-arterial-disease"
+root <- "C:/Users/mdxassw4/Documents/Github/A-cost-effectiveness-analysis-of-CYP2C19-genotyping-in-symptomatic-lower-extremity-arterial-disease"
 
 source(file.path(root,"PSA model","Data","PSA - Transition probabilities.R"))
 source(file.path(root,"PSA model","Data","PSA - Costs.R"))

@@ -170,8 +170,8 @@ HR_VD <- rlnorm(
 
 probEtoJ_6monthR <- probEtoJ_6monthA * HR_VD
 
-probGtoJ_6monthR<-probCtoJ_6monthR<-probAtoJ_6monthR
-probEtoJ_6monthR<-probFtoJ_6monthR<-probDtoJ_6monthR<-probBtoJ_6monthR<-probAtoJ_6monthR
+probGtoJ_6monthR<-probCtoJ_6monthR<-probAtoJ_6monthR<-probEtoJ_6monthR
+probFtoJ_6monthR<-probDtoJ_6monthR<-probBtoJ_6monthR<-probAtoJ_6monthR
 
 probAtoAI_1_91yr<-rbeta(1,81,3148)
 AtoAIrate<--log(1-probAtoAI_1_91yr)/1.91

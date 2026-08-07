@@ -102,6 +102,8 @@ qolGHa<-qolGa + strokeutilityloss
 MImu <- -0.06
 MISE <- (0.11 - 0.01)/(2*1.96)
 
+MI_utility<-(rnorm(1, MImu, MISE) ) /2
+
 qolAIc<-qolAc + MI_utility
 qolAIr<-qolAr + MI_utility
 qolAIa<-qolAa + MI_utility
