@@ -183,10 +183,8 @@ markovtrace["disccost"] <- markovtrace["Cost"] * markovtrace["disc"]
 markovtrace["discqaly"] <- markovtrace["QALY"] * markovtrace["disc"]
 
 results <- c(
-  sum(markovtrace$disccost) +
-    n * (0.5*costTest) +
-    sum(tot_trans_cost),
-  sum(markovtrace$discqaly)
+  sum(head(markovtrace$disccost, ncycles)) + ((0.5*n) * costTest) + sum(tot_trans_cost),
+  sum(head(markovtrace$discqaly, ncycles))
 )
   ICnotest3<-results
   ICnotest3meanresults<-results/n
