@@ -165,12 +165,10 @@ for(j in 1:mcruns){
   
   markovtrace["discqaly"] <- markovtrace["QALY"] * markovtrace["disc"]
   
-  results <- c(
-    sum(markovtrace$disccost) +
-      n * costTest +
-      sum(tot_trans_cost),
-    sum(markovtrace$discqaly)
-  )
+ results <- c(
+  sum(head(markovtrace$disccost, ncycles)) + (n * costTest) + sum(tot_trans_cost),
+  sum(head(markovtrace$discqaly, ncycles))
+)
   mcresults_ICrivasptest[j,]<-results
 }
   
