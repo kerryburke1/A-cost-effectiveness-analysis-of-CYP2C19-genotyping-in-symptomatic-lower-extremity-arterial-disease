@@ -16,7 +16,7 @@ library("dampack")
 n<-138563 
 nstates<-23
 discountrate<-0.035
-mcruns<-10000
+mcruns<-10
 run_tests=FALSE
 
 statenames<-c("IC","CLTI","RevascIC","RevascCLTI","Amputation","ReintCLTI","ReintIC","ICStroke","CLTIStroke","RevascICStroke","RevascCLTIStroke","AmputationStroke","ReintCLTIStroke","ReintICStroke","ICMI","CLTIMI","RevascICMI","RevascCLTIMI","AmputationMI","ReintCLTIMI","ReintICMI","VascularDeath","OtherDeath")
@@ -160,7 +160,7 @@ total_qaly_comp_IC<-mcresults_ICnotest1[,2]
 print(paste("Mean QALYs of nogenotyping IC:",mean(total_qaly_comp_IC/138563) ))
 
 ICERS_IC<-(total_cost_test_IC-total_cost_comp_IC)/(total_qaly_test_IC-total_qaly_comp_IC)
-NB_IC<-((total_qaly_test_IC-total_qaly_comp_IC)*25000)-(total_cost_test_IC-total_cost_comp_IC)
+NB_IC<-((total_qaly_test_IC-total_qaly_comp_IC)*20000)-(total_cost_test_IC-total_cost_comp_IC)
 PCE_IC<-mean(NB_IC>0)
 print(paste("Probability of genotyping being cost-effective IC:",PCE_IC*100,"%"))
 
@@ -178,7 +178,7 @@ total_qaly_comp_CLTI<-mcresults_CLTInotest1[,2]
 print(paste("Mean QALYs of nogenotyping CLTI:",mean(total_qaly_comp_CLTI/34640 ) ))
 
 ICERS_CLTI<-(total_cost_test_CLTI-total_cost_comp_CLTI)/(total_qaly_test_CLTI-total_qaly_comp_CLTI)
-NB_CLTI<-((total_qaly_test_CLTI-total_qaly_comp_CLTI)*25000)-(total_cost_test_CLTI-total_cost_comp_CLTI)
+NB_CLTI<-((total_qaly_test_CLTI-total_qaly_comp_CLTI)*20000)-(total_cost_test_CLTI-total_cost_comp_CLTI)
 PCE_CLTI<-mean(NB_CLTI>0)
 
 print(paste("Probability of genotyping being cost-effective CLTI:",PCE_CLTI*100,"%"))
@@ -207,7 +207,7 @@ IC_psa_obj1 <- make_psa_obj(
 )
 
 IC_ceac_obj1 <- ceac(
-  wtp = c(0, 5000, 10000, 20000, 25000, 40000, 50000, 100000),
+  wtp = c(0, 5000, 10000, 20000, 40000, 50000, 100000),
   psa = IC_psa_obj1
 )
 
@@ -231,7 +231,7 @@ CLTI_psa_obj1 <- make_psa_obj(
 )
 
 CLTI_ceac_obj1 <- ceac(
-  wtp = c(0, 5000, 10000, 20000, 25000, 40000, 50000, 100000),
+  wtp = c(0, 5000, 10000, 20000, 40000, 50000, 100000),
   psa = CLTI_psa_obj1
 )
 
@@ -243,8 +243,8 @@ p1 <- plot(IC_ceac_obj1) +
     x = "Willingness to Pay (£000s / QALY)"
   ) +
   scale_x_continuous(
-    breaks = c(0, 10, 20, 25, 50, 100),
-    labels = c("£0", "£10k", "£20k", "£25k", "£50k", "£100k")
+    breaks = c(0, 10, 20, 50, 100),
+    labels = c("£0", "£10k", "£20k", "£50k", "£100k")
   ) +
   theme(
     plot.title = element_text(size = 12)
@@ -257,8 +257,8 @@ p2 <- plot(CLTI_ceac_obj1) +
     x = "Willingness to Pay (£000s / QALY)"
   ) +
   scale_x_continuous(
-    breaks = c(0, 10, 20, 25, 50, 100),
-    labels = c("£0", "£10k", "£20k", "£25k", "£50k", "£100k")
+    breaks = c(0, 10, 20, 50, 100),
+    labels = c("£0", "£10k", "£20k", "£50k", "£100k")
   ) +
   theme(
     plot.title = element_text(size = 12)
@@ -270,7 +270,7 @@ library(patchwork)
 
 p1 <- plot(
   IC_ceac_obj1,
-  xbreaks = c(0, 10, 20, 25, 50, 100)
+  xbreaks = c(0, 10, 20, 50, 100)
 ) +
   labs(
     title = "IC genotyping versus all on clopidogrel",
@@ -286,8 +286,8 @@ p2 <- plot(CLTI_ceac_obj1) +
     x = "Willingness to Pay (Thousand £ / QALY)"
   ) +
   scale_x_continuous(
-    breaks = c(0, 10, 20, 25, 50, 100),
-    labels = c("0", "10", "20", "25", "50", "100")
+    breaks = c(0, 10, 20, 50, 100),
+    labels = c("0", "10", "20", "50", "100")
   ) +
   theme(plot.title = element_text(size = 12))
 

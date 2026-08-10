@@ -115,8 +115,12 @@ costGI_R<-((((190+4340)+(230+5610))/2)*costinflator_2020_21_to_2024) +costRivAsp
 costJ<-0
 costK<-0
 
-trans_cost_mat <- matrix(0, nrow=nstates, ncol=nstates,
-                         dimnames=list(statenames, statenames))
+trans_cost_mat <- matrix(
+  0,
+  nrow = nstates,
+  ncol = nstates,
+  dimnames = list(statenames, statenames)
+)
 
 trans_cost_mat["IC", "RevascIC"] <- ((20401*0.42) + (12298*0.58))*costinflator_2014_15_to_2024  
 trans_cost_mat["IC", "Amputation"] <- ((1130*costinflator_2014_15_to_2024 )+(35804.46*costinflator_2020_21_to_2024))-cost_E

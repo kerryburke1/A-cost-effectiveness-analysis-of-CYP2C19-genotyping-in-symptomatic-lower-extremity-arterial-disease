@@ -166,6 +166,19 @@ ICER1
 ICER2 <- (total_cost3-total_cost4) / (total_qaly3-total_qaly4)
 ICER2
 
+ic_prob_objects <- ls(pattern = "^prob.*_6monthB$")
+
+ic_prob_check <- data.frame(
+  object = ic_prob_objects,
+  has_NA = sapply(ic_prob_objects, function(x) any(is.na(get(x)))),
+  has_NaN = sapply(ic_prob_objects, function(x) any(is.nan(get(x)))),
+  has_Inf = sapply(ic_prob_objects, function(x) any(is.infinite(get(x))))
+)
+
+print(ic_prob_check[ic_prob_check$has_NA |
+                      ic_prob_check$has_NaN |
+                      ic_prob_check$has_Inf, ])
+
 #total amputations
 
 #IC testing arm (vs all on clopi)

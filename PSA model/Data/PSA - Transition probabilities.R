@@ -1,5 +1,8 @@
 #MACE transition probabilities
 
+acm_ic <- read_excel(file.path(root, "PSA model", "Data", "acm_ic.xlsx"))
+acm_clti <- read_excel(file.path(root, "PSA model", "Data", "acm_clti.xlsx"))
+
 probAtoAI_1_91yr<-rbeta(1,50,3173)
 AtoAIrate<- -log(1-probAtoAI_1_91yr)/1.91
 probAtoAI_6monthB<-1-exp(-0.5*AtoAIrate)
@@ -107,7 +110,7 @@ HR_Stroke <- rlnorm(
   sdlog = (log(0.76) - log(0.44)) / (2 * 1.96)
 )
 
-probAtoAH_6monthR <- probEtoEH_6monthA * HR_Stroke
+probAtoAH_6monthR <- probAtoAH_6monthA * HR_Stroke
 
 probGtoGH_6monthR<-probCtoCH_6monthR<-probAtoAH_6monthR
 probEtoEH_6monthR<-probFtoFH_6monthR<-probDtoDH_6monthR<-probBtoBH_6monthR<-probAtoAH_6monthR
@@ -172,13 +175,6 @@ probEtoJ_6monthR <- probEtoJ_6monthA * HR_VD
 
 probGtoJ_6monthR<-probCtoJ_6monthR<-probAtoJ_6monthR<-probEtoJ_6monthR
 probFtoJ_6monthR<-probDtoJ_6monthR<-probBtoJ_6monthR<-probAtoJ_6monthR
-
-probAtoAI_1_91yr<-rbeta(1,81,3148)
-AtoAIrate<--log(1-probAtoAI_1_91yr)/1.91
-probAtoAI_6monthA <-1-exp(-0.5*AtoAIrate)
-
-probGtoJ_6monthA<-probCtoJ_6monthA<-probAtoJ_6monthA
-probEtoJ_6monthA<-probFtoJ_6monthA<-probDtoJ_6monthA<-probBtoJ_6monthA<-probAtoJ_6monthA
 
 probAHtoJ_1_1yr<-rbeta(1,13,612)
 AHtoJrate<--log(1-probAHtoJ_1_1yr)/1.1
@@ -373,6 +369,3 @@ probDItoD_6month<-1-(p_death+probDItoJ_6month)
 probEItoE_6month<-1-(p_death+probEItoJ_6month)
 probFItoF_6month<-1-(p_death+probFItoJ_6month)
 probGItoG_6month<-1-(p_death+probGItoJ_6month)
-
-acm_ic<-read_excel(file.path(root,"PSA model","Data","acm_ic.xlsx"))
-acm_clti<-read_excel(file.path(root,"PSA model","Data","acm_clti.xlsx"))

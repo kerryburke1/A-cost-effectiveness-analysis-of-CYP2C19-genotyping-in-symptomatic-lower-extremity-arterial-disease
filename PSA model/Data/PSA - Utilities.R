@@ -51,8 +51,8 @@ qolEc<-(qolE1+ clopiAEminor + clopiAEmajor) /2
 qolEa<-(qolE1+ aspAEminor + aspAEmajor) /2
 qolEr<-(qolE1+ rivaspAEminor + rivaspAEmajor) /2
 
-u_baseline <- rnorm(1, 0.5, 0.2)
-u_followup <- rnorm(1, 0.7, 0.2)
+u_baseline <- pmax(0, pmin(1, rnorm(1, 0.5, 0.2)))
+u_followup <- pmax(0, pmin(1, rnorm(1, 0.7, 0.2)))
 qolF1 <- (u_followup - u_baseline) /2
 qolFc <- pmax(0, pmin(1, qolDc + qolF1)) 
 qolFa <- pmax(0, pmin(1, qolDa + qolF1)) 
@@ -70,33 +70,33 @@ strokemu <- -0.18
 strokeSE <- (0.28 - 0.08)/(2*1.96)
 strokeutilityloss <- (rnorm(1, strokemu, strokeSE) ) /2
 
-qolAHc<-qolAc + strokeutilityloss
-qolAHr<-qolAr + strokeutilityloss
-qolAHa<-qolAa + strokeutilityloss
+qolAHc <- pmax(0, pmin(1, qolAc + strokeutilityloss))
+qolAHr <- pmax(0, pmin(1, qolAr + strokeutilityloss))
+qolAHa <- pmax(0, pmin(1, qolAa + strokeutilityloss))
 
-qolBHc<-qolBc + strokeutilityloss
-qolBHr<-qolBr + strokeutilityloss
-qolBHa<-qolBa + strokeutilityloss
+qolBHc <- pmax(0, pmin(1, qolBc + strokeutilityloss))
+qolBHr <- pmax(0, pmin(1, qolBr + strokeutilityloss))
+qolBHa <- pmax(0, pmin(1, qolBa + strokeutilityloss))
 
-qolCHc<-qolCc + strokeutilityloss
-qolCHr<-qolCr + strokeutilityloss
-qolCHa<-qolCa + strokeutilityloss
+qolCHc <- pmax(0, pmin(1, qolCc + strokeutilityloss))
+qolCHr <- pmax(0, pmin(1, qolCr + strokeutilityloss))
+qolCHa <- pmax(0, pmin(1, qolCa + strokeutilityloss))
 
-qolDHc<-qolDc + strokeutilityloss
-qolDHr<-qolDr + strokeutilityloss
-qolDHa<-qolDa + strokeutilityloss
+qolDHc <- pmax(0, pmin(1, qolDc + strokeutilityloss))
+qolDHr <- pmax(0, pmin(1, qolDr + strokeutilityloss))
+qolDHa <- pmax(0, pmin(1, qolDa + strokeutilityloss))
 
-qolEHc<-qolEc + strokeutilityloss
-qolEHr<-qolEr + strokeutilityloss
-qolEHa<-qolEa + strokeutilityloss
+qolEHc <- pmax(0, pmin(1, qolEc + strokeutilityloss))
+qolEHr <- pmax(0, pmin(1, qolEr + strokeutilityloss))
+qolEHa <- pmax(0, pmin(1, qolEa + strokeutilityloss))
 
-qolFHc<-qolFc + strokeutilityloss
-qolFHr<-qolFr + strokeutilityloss
-qolFHa<-qolFa + strokeutilityloss
+qolFHc <- pmax(0, pmin(1, qolFc + strokeutilityloss))
+qolFHr <- pmax(0, pmin(1, qolFr + strokeutilityloss))
+qolFHa <- pmax(0, pmin(1, qolFa + strokeutilityloss))
 
-qolGHc<-qolGc + strokeutilityloss
-qolGHr<-qolGr + strokeutilityloss
-qolGHa<-qolGa + strokeutilityloss
+qolGHc <- pmax(0, pmin(1, qolGc + strokeutilityloss))
+qolGHr <- pmax(0, pmin(1, qolGr + strokeutilityloss))
+qolGHa <- pmax(0, pmin(1, qolGa + strokeutilityloss))
 
 #MI PSA
 MImu <- -0.06
@@ -104,33 +104,33 @@ MISE <- (0.11 - 0.01)/(2*1.96)
 
 MI_utility<-(rnorm(1, MImu, MISE) ) /2
 
-qolAIc<-qolAc + MI_utility
-qolAIr<-qolAr + MI_utility
-qolAIa<-qolAa + MI_utility
+qolAIc <- pmax(0, pmin(1, qolAc + MI_utility))
+qolAIr <- pmax(0, pmin(1, qolAr + MI_utility))
+qolAIa <- pmax(0, pmin(1, qolAa + MI_utility))
 
-qolBIc<-qolBc + MI_utility
-qolBIr<-qolBr + MI_utility
-qolBIa<-qolBa + MI_utility
+qolBIc <- pmax(0, pmin(1, qolBc + MI_utility))
+qolBIr <- pmax(0, pmin(1, qolBr + MI_utility))
+qolBIa <- pmax(0, pmin(1, qolBa + MI_utility))
 
-qolCIc<-qolCc + MI_utility
-qolCIr<-qolCr + MI_utility
-qolCIa<-qolCa + MI_utility
+qolCIc <- pmax(0, pmin(1, qolCc + MI_utility))
+qolCIr <- pmax(0, pmin(1, qolCr + MI_utility))
+qolCIa <- pmax(0, pmin(1, qolCa + MI_utility))
 
-qolDIc<-qolDc + MI_utility
-qolDIr<-qolDr + MI_utility
-qolDIa<-qolDa + MI_utility
+qolDIc <- pmax(0, pmin(1, qolDc + MI_utility))
+qolDIr <- pmax(0, pmin(1, qolDr + MI_utility))
+qolDIa <- pmax(0, pmin(1, qolDa + MI_utility))
 
-qolEIc<-qolEc + MI_utility
-qolEIr<-qolEr + MI_utility
-qolEIa<-qolEa + MI_utility
+qolEIc <- pmax(0, pmin(1, qolEc + MI_utility))
+qolEIr <- pmax(0, pmin(1, qolEr + MI_utility))
+qolEIa <- pmax(0, pmin(1, qolEa + MI_utility))
 
-qolFIc<-qolFc + MI_utility
-qolFIr<-qolFr + MI_utility
-qolFIa<-qolFa + MI_utility
+qolFIc <- pmax(0, pmin(1, qolFc + MI_utility))
+qolFIr <- pmax(0, pmin(1, qolFr + MI_utility))
+qolFIa <- pmax(0, pmin(1, qolFa + MI_utility))
 
-qolGIc<-qolGc + MI_utility
-qolGIr<-qolGr + MI_utility
-qolGIa<-qolGa + MI_utility
+qolGIc <- pmax(0, pmin(1, qolGc + MI_utility))
+qolGIr <- pmax(0, pmin(1, qolGr + MI_utility))
+qolGIa <- pmax(0, pmin(1, qolGa + MI_utility))
 
 #Death states
 qolJ<-0

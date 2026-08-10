@@ -66,7 +66,7 @@ probAtoAH_6monthA <-1-exp(-0.5*AtoAHrate)
 probGtoGH_6monthA<-probCtoCH_6monthA<-probAtoAH_6monthA
 probEtoEH_6monthA<-probFtoFH_6monthA<-probDtoDH_6monthA<-probBtoBH_6monthA<-probAtoAH_6monthA
 
-probGtoGH_6monthR<- probAtoAH_6monthA * 0.58
+probAtoAH_6monthR<- probAtoAH_6monthA * 0.58
 
 probGtoGH_6monthR<-probCtoCH_6monthR<-probAtoAH_6monthR
 probEtoEH_6monthR<-probFtoFH_6monthR<-probDtoDH_6monthR<-probBtoBH_6monthR<-probAtoAH_6monthR

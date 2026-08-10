@@ -16,11 +16,11 @@ qolEc<-(0.54+ clopiAEminor + clopiAEmajor) /2
 
 qolAa<-(0.65+ aspAEminor + aspAEmajor) /2
 qolBa<-(0.42+ aspAEminor + aspAEmajor) /2
-qolEa<-(0.42+ aspAEminor + aspAEmajor) /2
+qolEa<-(0.54+ aspAEminor + aspAEmajor) /2
 
 qolAr<-(0.65+ rivaspAEminor + rivaspAEmajor) /2
 qolBr<-(0.42+ rivaspAEminor + rivaspAEmajor) /2
-qolEr<-(0.42+ rivaspAEminor + rivaspAEmajor) /2
+qolEr<-(0.54+ rivaspAEminor + rivaspAEmajor) /2
 
 qolCSixmonthTotalLoss<-(0.07/5) /2
 qolCc<-qolAc + qolCSixmonthTotalLoss
@@ -38,9 +38,9 @@ qolFa<-qolDa + qolFutilitygain
 qolFr<-qolDr + qolFutilitygain
 
 qolGSixmonthTotalLoss<-(0.07/5) /2
-qolGc<-qolCc + qolCSixmonthTotalLoss
-qolGa<-qolCa + qolCSixmonthTotalLoss
-qolGr<-qolCr + qolCSixmonthTotalLoss
+qolGc<-qolCc + qolGSixmonthTotalLoss
+qolGa<-qolCa + qolGSixmonthTotalLoss
+qolGr<-qolCr + qolGSixmonthTotalLoss
 
 #Stroke
 strokeutilityloss <- -0.18 /2
