@@ -89,7 +89,6 @@ for (i in 1:mcruns){
   #Decision Tree 2 (CLTI)
   tree<-Node$new("CLTI")
   tree$AddChild("Genotyping")
-  tree$AddChild("NoGenotyping")
   tree$AddChild("NoGenotyping_allClopi")
   tree$Genotyping$AddChild("Dropout")
   tree$Genotyping$Dropout$p<-rbeta(1,1,9)
@@ -135,7 +134,6 @@ for (i in 1:mcruns){
   markovn2[i,]=n*leaf_probs[,2]
 }
 
-
 source(file.path(root,"PSA model","PSA - IC - clopi no test1.R"))
 source(file.path(root,"PSA model","PSA - IC - clopi no test3.R"))
 source(file.path(root,"PSA model","PSA - IC - clopi.R"))
@@ -162,7 +160,7 @@ total_qaly_comp_IC<-mcresults_ICnotest1[,2]
 print(paste("Mean QALYs of nogenotyping IC:",mean(total_qaly_comp_IC/138563) ))
 
 ICERS_IC<-(total_cost_test_IC-total_cost_comp_IC)/(total_qaly_test_IC-total_qaly_comp_IC)
-NB_IC<-((total_qaly_test_IC-total_qaly_comp_IC)*20000)-(total_cost_test_IC-total_cost_comp_IC)
+NB_IC<-((total_qaly_test_IC-total_qaly_comp_IC)*25000)-(total_cost_test_IC-total_cost_comp_IC)
 PCE_IC<-mean(NB_IC>0)
 print(paste("Probability of genotyping being cost-effective IC:",PCE_IC*100,"%"))
 
@@ -180,7 +178,7 @@ total_qaly_comp_CLTI<-mcresults_CLTInotest1[,2]
 print(paste("Mean QALYs of nogenotyping CLTI:",mean(total_qaly_comp_CLTI/34640 ) ))
 
 ICERS_CLTI<-(total_cost_test_CLTI-total_cost_comp_CLTI)/(total_qaly_test_CLTI-total_qaly_comp_CLTI)
-NB_CLTI<-((total_qaly_test_CLTI-total_qaly_comp_CLTI)*20000)-(total_cost_test_CLTI-total_cost_comp_CLTI)
+NB_CLTI<-((total_qaly_test_CLTI-total_qaly_comp_CLTI)*25000)-(total_cost_test_CLTI-total_cost_comp_CLTI)
 PCE_CLTI<-mean(NB_CLTI>0)
 
 print(paste("Probability of genotyping being cost-effective CLTI:",PCE_CLTI*100,"%"))
@@ -188,61 +186,120 @@ print(paste("Probability of genotyping being cost-effective CLTI:",PCE_CLTI*100,
 print(PCE_IC)
 print(PCE_CLTI)
 
-#Graphs IC
-strategies<-list("Genotyping","No Genotyping")
-cost<-data.frame("Genotyping_Cost"=c(total_cost_test_IC/138563),
-                 "NoGenotyping_Cost"=c(total_cost_comp_IC/138563))
-effectiveness<-data.frame("Genotyping_Eff"=c(total_qaly_test_IC/138563),
-                          "NoGenotyping_Eff"=c(total_qaly_comp_IC/138563))
-IC_psa_obj1<-make_psa_obj(cost=cost,
-                          effectiveness=effectiveness,
-                          strategies=strategies,
-                          currency="£")
+# Graphs IC
+strategies <- list("Genotyping", "No_Genotyping")
 
-IC_ceac_obj1<-ceac(wtp=c(0,5000,10000,20000,40000,50000,100000),
-                   psa=IC_psa_obj1)
+cost <- data.frame(
+  "Genotyping_Cost" = total_cost_test_IC / 138563,
+  "NoGenotyping_Cost" = total_cost_comp_IC / 138563
+)
 
-plot(IC_psa_obj1)
-plot(IC_ceac_obj1)
+effectiveness <- data.frame(
+  "Genotyping_Eff" = total_qaly_test_IC / 138563,
+  "NoGenotyping_Eff" = total_qaly_comp_IC / 138563
+)
 
-p <- plot(IC_ceac_obj1)
+IC_psa_obj1 <- make_psa_obj(
+  cost = cost,
+  effectiveness = effectiveness,
+  strategies = strategies,
+  currency = "£"
+)
 
-p +
-  labs(x = "Willingness to Pay (Thousand £ / QALY)")
+IC_ceac_obj1 <- ceac(
+  wtp = c(0, 5000, 10000, 20000, 25000, 40000, 50000, 100000),
+  psa = IC_psa_obj1
+)
 
-#Graphs CLTI
-cost<-data.frame("Genotyping_Cost"=c(total_cost_test_CLTI/138563),
-                 "NoGenotyping_Cost"=c(total_cost_comp_CLTI/138563))
-effectiveness<-data.frame("Genotyping_Eff"=c(total_qaly_test_CLTI/138563),
-                          "NoGenotyping_Eff"=c(total_qaly_comp_CLTI/138563))
-CLTI_psa_obj1<-make_psa_obj(cost=cost,
-                            effectiveness=effectiveness,
-                            strategies=strategies,
-                            currency="£")
-CLTI_ceac_obj1<-ceac(wtp=c(0,5000,10000,20000,40000,50000,100000),
-                     psa=CLTI_psa_obj1)
-plot(CLTI_psa_obj1)
-plot(CLTI_ceac_obj1)
 
-p <- plot(CLTI_ceac_obj1)
+# Graphs CLTI
+cost <- data.frame(
+  "Genotyping_Cost" = total_cost_test_CLTI / 34640,
+  "NoGenotyping_Cost" = total_cost_comp_CLTI / 34640
+)
 
-p +
-  labs(x = "Willingness to Pay (Thousand £ / QALY)")
+effectiveness <- data.frame(
+  "Genotyping_Eff" = total_qaly_test_CLTI / 34640,
+  "NoGenotyping_Eff" = total_qaly_comp_CLTI / 34640
+)
 
-#combine into 2x2 plot
+CLTI_psa_obj1 <- make_psa_obj(
+  cost = cost,
+  effectiveness = effectiveness,
+  strategies = strategies,
+  currency = "£"
+)
+
+CLTI_ceac_obj1 <- ceac(
+  wtp = c(0, 5000, 10000, 20000, 25000, 40000, 50000, 100000),
+  psa = CLTI_psa_obj1
+)
+
+
+# Create plots with the desired x-axis
+p1 <- plot(IC_ceac_obj1) +
+  labs(
+    title = "IC genotyping versus all on clopidogrel",
+    x = "Willingness to Pay (£000s / QALY)"
+  ) +
+  scale_x_continuous(
+    breaks = c(0, 10, 20, 25, 50, 100),
+    labels = c("£0", "£10k", "£20k", "£25k", "£50k", "£100k")
+  ) +
+  theme(
+    plot.title = element_text(size = 12)
+  )
+
+
+p2 <- plot(CLTI_ceac_obj1) +
+  labs(
+    title = "CLTI genotyping versus all on clopidogrel",
+    x = "Willingness to Pay (£000s / QALY)"
+  ) +
+  scale_x_continuous(
+    breaks = c(0, 10, 20, 25, 50, 100),
+    labels = c("£0", "£10k", "£20k", "£25k", "£50k", "£100k")
+  ) +
+  theme(
+    plot.title = element_text(size = 12)
+  )
+
+
+# Combine into 2x2 plot
 library(patchwork)
 
-p1 <- plot(IC_ceac_obj1) + labs(title = "IC genotyping versus all on clopidogrel") +
-  theme(plot.title = element_text(size = 12))
-p2 <- plot(CLTI_ceac_obj1) + labs(title = "CLTI genotyping versus all on clopidogrel") +
+p1 <- plot(
+  IC_ceac_obj1,
+  xbreaks = c(0, 10, 20, 25, 50, 100)
+) +
+  labs(
+    title = "IC genotyping versus all on clopidogrel",
+    x = "Willingness to Pay (Thousand £ / QALY)"
+  ) +
+  theme(
+    plot.title = element_text(size = 12)
+  )
+
+p2 <- plot(CLTI_ceac_obj1) +
+  labs(
+    title = "CLTI genotyping versus all on clopidogrel",
+    x = "Willingness to Pay (Thousand £ / QALY)"
+  ) +
+  scale_x_continuous(
+    breaks = c(0, 10, 20, 25, 50, 100),
+    labels = c("0", "10", "20", "25", "50", "100")
+  ) +
   theme(plot.title = element_text(size = 12))
 
-p1 <- p1 + labs(x = "Willingness to Pay (Thousand £ / QALY)")
-p2 <- p2 + labs(x = "Willingness to Pay (Thousand £ / QALY)")
+p1 <- p1 +
+  scale_colour_discrete(
+    labels = c("Genotyping", "No genotyping")
+  )
+
+p2 <- p2 +
+  scale_colour_discrete(
+    labels = c("Genotyping", "No genotyping")
+  )
 
 combined <- p1 / p2
-
-combined +
-  scale_x_continuous(
-    labels = function(x) paste0("£", x)
-  )
+combined
