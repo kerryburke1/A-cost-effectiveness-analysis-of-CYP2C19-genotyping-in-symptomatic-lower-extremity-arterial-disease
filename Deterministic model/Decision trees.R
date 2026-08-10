@@ -30,10 +30,10 @@ tree$AddChild("NoGenotyping_allClopi")
 tree$Genotyping$AddChild("Dropout")
 tree$Genotyping$Dropout$p <- 0.10
 tree$Genotyping$AddChild("NoLOF")
-tree$Genotyping$NoLOF$p <- 0.9*0.70
+tree$Genotyping$NoLOF$p <- 0.9*0.7029
 tree$Genotyping$NoLOF$AddChild("ICclopi")
 tree$Genotyping$AddChild("LOF")
-tree$Genotyping$LOF$p <- 0.9*0.30
+tree$Genotyping$LOF$p <- 0.9*0.2971
 tree$Genotyping$LOF$AddChild("ICrivasptest")
 tree$Genotyping$LOF$ICrivasptest$p <- 0.53
 tree$Genotyping$LOF$AddChild("ICasptest")
@@ -81,10 +81,10 @@ tree$AddChild("NoGenotyping_allClopi")
 tree$Genotyping$AddChild("Dropout")
 tree$Genotyping$Dropout$p <- 0.10
 tree$Genotyping$AddChild("NoLOF")
-tree$Genotyping$NoLOF$p <- 0.9*0.70
+tree$Genotyping$NoLOF$p <- 0.9*0.7029
 tree$Genotyping$NoLOF$AddChild("CLTIclopi")
 tree$Genotyping$AddChild("LOF")
-tree$Genotyping$LOF$p <- 0.9*0.30
+tree$Genotyping$LOF$p <- 0.9*0.2971
 tree$Genotyping$LOF$AddChild("CLTIrivasptest")
 tree$Genotyping$LOF$CLTIrivasptest$p <- 0.73
 tree$Genotyping$LOF$AddChild("CLTIasptest")
