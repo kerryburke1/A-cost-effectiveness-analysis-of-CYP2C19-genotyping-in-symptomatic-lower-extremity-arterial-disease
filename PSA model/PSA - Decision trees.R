@@ -16,7 +16,7 @@ library("dampack")
 n<-138563 
 nstates<-23
 discountrate<-0.035
-mcruns<-10
+mcruns<-100
 run_tests=FALSE
 
 statenames<-c("IC","CLTI","RevascIC","RevascCLTI","Amputation","ReintCLTI","ReintIC","ICStroke","CLTIStroke","RevascICStroke","RevascCLTIStroke","AmputationStroke","ReintCLTIStroke","ReintICStroke","ICMI","CLTIMI","RevascICMI","RevascCLTIMI","AmputationMI","ReintCLTIMI","ReintICMI","VascularDeath","OtherDeath")
