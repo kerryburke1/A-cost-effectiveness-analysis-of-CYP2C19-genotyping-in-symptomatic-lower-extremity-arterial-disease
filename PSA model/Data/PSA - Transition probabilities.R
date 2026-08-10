@@ -287,11 +287,11 @@ probCtoG_6monthA <-1-exp(-0.5*CtoGrate)
 
 probDtoF_6monthA<-probCtoG_6monthA
 
-IC_revasc_2024 = rbeta(1,3490,138563)  
+IC_revasc_2024 = rbeta(1,3490,135073)  
 probAtoC_6monthB<-IC_revasc_2024*0.5
 probAtoC_6monthA<-probAtoC_6monthR<-probAtoC_6monthC<-probAtoC_6monthB
 
-CLTI_revasc_2024<-rbeta(1,12630,34640)
+CLTI_revasc_2024<-rbeta(1,12630,22010)
 probBtoD_6monthB<-CLTI_revasc_2024*0.5
 probBtoD_6monthA<-probBtoD_6monthR<-probBtoD_6monthC<-probBtoD_6monthB
 
