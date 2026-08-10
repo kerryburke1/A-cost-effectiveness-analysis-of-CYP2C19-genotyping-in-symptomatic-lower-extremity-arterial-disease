@@ -165,10 +165,9 @@ for(j in 1:mcruns){
   markovtrace["discqaly"] <- markovtrace["QALY"] * markovtrace["disc"]
   
   results <- c(
-    sum(markovtrace$disccost) +
-      sum(tot_trans_cost),
-    sum(markovtrace$discqaly)
-  )
+  sum(head(markovtrace$disccost, ncycles)) + sum(tot_trans_cost),
+  sum(head(markovtrace$discqaly, ncycles))
+)
   mcresults_CLTInotest1[j,]<-results
 }
   
