@@ -170,7 +170,7 @@ total_cost_test_CLTI<-mcresults_CLTInotest3[,1]+
 print(paste("Mean Cost of genotyping CLTI:",mean(total_cost_test_CLTI/34640 ) ))
 total_qaly_test_CLTI<-mcresults_CLTInotest3[,2]+
   mcresults_CLTIclopi[,2]+mcresults_CLTIasptest[,2]+mcresults_CLTIrivasptest[,2]
-print(paste("Mean QALYs of nogenotyping CLTI:",mean(total_qaly_test_CLTI/34640 ) ))
+print(paste("Mean QALYs of genotyping CLTI:",mean(total_qaly_test_CLTI/34640 ) ))
 
 total_cost_comp_CLTI<-mcresults_CLTInotest1[,1]
 print(paste("Mean Cost of nogenotyping CLTI:",mean(total_cost_comp_CLTI/34640 ) ))

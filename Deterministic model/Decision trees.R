@@ -86,9 +86,9 @@ tree$Genotyping$NoLOF$AddChild("CLTIclopi")
 tree$Genotyping$AddChild("LOF")
 tree$Genotyping$LOF$p <- 0.9*0.30
 tree$Genotyping$LOF$AddChild("CLTIrivasptest")
-tree$Genotyping$LOF$ICrivasptest$p <- 0.53
+tree$Genotyping$LOF$CLTIrivasptest$p <- 0.53
 tree$Genotyping$LOF$AddChild("CLTIasptest")
-tree$Genotyping$LOF$ICasptest$p <- 0.47
+tree$Genotyping$LOF$CLTIasptest$p <- 0.47
 
 tree$Genotyping$Dropout$AddChild("CLTInotest3")
 tree$Genotyping$Dropout$CLTInotest3$p<-1
@@ -193,7 +193,7 @@ print(CLTInotest1revasc)
 #total strokes
 
 #IC testing arm (vs all on clopi)
-print(ICclopistroke+ICaspteststroke++ICrivaspteststroke+ICnotest3stroke)
+print(ICclopistroke+ICaspteststroke+ICrivaspteststroke+ICnotest3stroke)
 #IC all on clopi
 print(ICnotest1stroke)
 
