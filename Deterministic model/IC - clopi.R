@@ -170,10 +170,8 @@ markovtrace["QALY"]<-(markovtrace["IC"]*qolAc)+
 tot_trans_cost <- numeric(ncycles)
 
 for(i in 1:ncycles){
-  df <- 1/(1 + discountrate)^(i/2)
-  
-  tot_trans_cost[i] <-
-    sum(translist[[i]] * trans_cost_mat) * df
+  df <- 1/(1 + discountrate)^((i-1)/2)   # beginning of cycle i
+  tot_trans_cost[i] <- sum(translist[[i]] * trans_cost_mat) * df
 }
 
 sum(tot_trans_cost)
