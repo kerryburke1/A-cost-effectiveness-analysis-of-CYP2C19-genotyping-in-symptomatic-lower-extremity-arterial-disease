@@ -86,9 +86,9 @@ tree$Genotyping$NoLOF$AddChild("CLTIclopi")
 tree$Genotyping$AddChild("LOF")
 tree$Genotyping$LOF$p <- 0.9*0.30
 tree$Genotyping$LOF$AddChild("CLTIrivasptest")
-tree$Genotyping$LOF$CLTIrivasptest$p <- 0.53
+tree$Genotyping$LOF$CLTIrivasptest$p <- 0.73
 tree$Genotyping$LOF$AddChild("CLTIasptest")
-tree$Genotyping$LOF$CLTIasptest$p <- 0.47
+tree$Genotyping$LOF$CLTIasptest$p <- 0.27
 
 tree$Genotyping$Dropout$AddChild("CLTInotest3")
 tree$Genotyping$Dropout$CLTInotest3$p<-1
