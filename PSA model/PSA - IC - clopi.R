@@ -73,20 +73,6 @@ for(j in 1:mcruns){
     
     rownames(transmat)<-colnames(transmat)<-statenames
     
-    row_sums <- rowSums(transmat)
-    
-    print(data.frame(
-      state = statenames,
-      row_sum = row_sums,
-      difference = row_sums - 1
-    ))
-    
-    if(run_tests){
-      check_transition_rows(transmat)
-      check_negative_transitions(transmat)
-    }
-    
-    
     markovtrace[1+i,] <- markovtrace[i,] %*% transmat
     
     transflows <- sweep(transmat, 1, markovtrace[i,], "*")
@@ -94,9 +80,6 @@ for(j in 1:mcruns){
     translist[[i]] <- transflows
     
   }
-  
-  dim(transmat)
-  length(transmat)
   
   markovtrace<-as.data.frame(markovtrace)
   
