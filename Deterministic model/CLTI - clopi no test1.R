@@ -183,9 +183,8 @@ markovtrace["disccost"] <- markovtrace["Cost"] * markovtrace["disc"]
 markovtrace["discqaly"] <- markovtrace["QALY"] * markovtrace["disc"]
 
 results <- c(
-  sum(markovtrace$disccost) +
-    sum(tot_trans_cost),
-  sum(markovtrace$discqaly)
+  sum(head(markovtrace$disccost, ncycles)) + (n * costTest) + sum(tot_trans_cost),
+  sum(head(markovtrace$discqaly, ncycles))
 )
 CLTInotest1<-results
 CLTInotest1meanresults<-results/n
