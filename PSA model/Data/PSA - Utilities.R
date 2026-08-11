@@ -2,13 +2,13 @@
 
 #Limb states PSA
 
-clopiAEminor <- 0.0093 * (runif(1,0.00297,0.00363))
-aspAEminor <- 0.0093 * (runif(1,0.00297,0.00363))
-rivaspAEminor <- 0.0488 * (runif(1,0.00297,0.00363))
+clopiAEminor <- 0.0093 * -(runif(1,0.00297,0.00363))
+aspAEminor <- 0.0093 * -(runif(1,0.00297,0.00363))
+rivaspAEminor <- 0.0488 * -(runif(1,0.00297,0.00363))
 
-clopiAEmajor <- 0.0041 * (runif(1,0.12834,0.15686))
-aspAEmajor <- 0.0054 * (runif(1,0.12834,0.15686))
-rivaspAEmajor <- 0.0165 * (runif(1,0.12834,0.15686))
+clopiAEmajor <- 0.0041 * -(runif(1,0.12834,0.15686))
+aspAEmajor <- 0.0054 * -(runif(1,0.12834,0.15686))
+rivaspAEmajor <- 0.0165 * -(runif(1,0.12834,0.15686))
 
 qolAmu<-0.65    
 qolAVar<-0.002^2
