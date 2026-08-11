@@ -119,6 +119,7 @@ trans_cost_mat <- matrix(0, nrow=nstates, ncol=nstates,
                          dimnames=list(statenames, statenames))
 
 trans_cost_mat["IC", "RevascIC"] <- (((20401*0.42) + (12298*0.58))*costinflator_2014_15_to_2024  ) *rnorm(1,1,0.05102041)
+trans_cost_mat["IC", "Amputation"] <- (((1130*costinflator_2014_15_to_2024  )+(35804.46*costinflator_2020_21_to_2024)) *rnorm(1,1,0.05102041)) -cost_E
 
 trans_cost_mat["CLTI", "RevascCLTI"] <- (((20401*0.42) + (12298*0.58))*costinflator_2014_15_to_2024  ) *rnorm(1,1,0.05102041) 
 trans_cost_mat["CLTI", "Amputation"] <- (((1130*costinflator_2014_15_to_2024  )+(35804.46*costinflator_2020_21_to_2024)) *rnorm(1,1,0.05102041)) -cost_E
@@ -146,8 +147,6 @@ trans_cost_mat["ReintIC", "Amputation"] <-
   ((1130 * costinflator_2014_15_to_2024) +
      (35804.46 * costinflator_2020_21_to_2024)) *
   rnorm(1, 1, 0.05102041) - cost_E
-
-trans_cost_mat["IC", "Amputation"] <- (((1130*costinflator_2014_15_to_2024  )+(35804.46*costinflator_2020_21_to_2024)) *rnorm(1,1,0.05102041)) -cost_E
 
 vasc_death<-(2726*costinflator_2009_10_to_2024 ) *rnorm(1,1,0.05102041)
 trans_cost_mat["IC", "VascularDeath"] <- vasc_death
