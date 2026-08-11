@@ -168,15 +168,17 @@ for(j in 1:mcruns){
   
   sum(tot_trans_cost)
   
-  markovtrace["disc"] <- 1 / ((1 + discountrate)^(markovtrace["SixMonths"] * 0.5))
   
-  markovtrace["disccost"] <- markovtrace["Cost"] * markovtrace["disc"]
+hcc_cost <- numeric(ncycles) 
+hcc_qaly <- numeric(ncycles)
+for(i in 1:ncycles){ 
+hcc_cost[i] <- ( markovtrace[i, "Cost"] + markovtrace[i + 1, "Cost"] ) / 2 
+hcc_qaly[i] <- ( markovtrace[i, "QALY"] + markovtrace[i + 1, "QALY"] ) / 2 } 
+cycle_midpoint_years <- ((1:ncycles) - 0.5) * 0.5 
+disc <- 1 / ((1 + discountrate)^cycle_midpoint_years)
+disccost_hcc <- hcc_cost * disc 
+discqaly_hcc <- hcc_qaly * disc
+results <- c( sum(disccost_hcc) + ((0.5*n) * costTest) + sum(tot_trans_cost), sum(discqaly_hcc) )
   
-  markovtrace["discqaly"] <- markovtrace["QALY"] * markovtrace["disc"]
-  
-  results <- c(
-  sum(head(markovtrace$disccost, ncycles)) + ((0.5*n) * costTest) + sum(tot_trans_cost),
-  sum(head(markovtrace$discqaly, ncycles))
-)
 mcresults_ICnotest3[j,]<-results
 }
