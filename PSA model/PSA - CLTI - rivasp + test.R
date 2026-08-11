@@ -20,6 +20,32 @@ for(j in 1:mcruns){
   translist<-list()
   
   for(i in 1:ncycles){
+
+    p_death<-as.numeric(acm_clti[i,2])
+  
+  probAtoA_6monthA<-1-(probAtoB_6monthA+probAtoC_6monthA+probAtoE_6monthA+probAtoAH_6monthA+probAtoAI_6monthA+probAtoJ_6monthA+p_death)
+  probBtoB_6monthA<-1-(probBtoD_6monthA+probBtoE_6monthA+probBtoBH_6monthA+probBtoBI_6monthA+probBtoJ_6monthA+p_death)
+  probCtoC_6monthA<-1-(probCtoB_6monthA+probCtoE_6monthA+probCtoG_6monthA+probCtoCH_6monthA+probCtoCI_6monthA+probCtoJ_6monthA+p_death)
+  probDtoD_6monthA<-1-(probDtoE_6monthA+probDtoF_6monthA+probDtoDH_6monthA+probDtoDI_6monthA+probDtoJ_6monthA+p_death)
+  probEtoE_6monthA<-1-(probEtoEH_6monthA+probEtoEI_6monthA+probEtoJ_6monthA+p_death)
+  probFtoF_6monthA<-1-(probFtoE_6monthA+probFtoFH_6monthA+probFtoFI_6monthA+probFtoJ_6monthA+p_death)
+  probGtoG_6monthA<-1-(probGtoB_6monthA+probGtoE_6monthA+probGtoGH_6monthA+probGtoGI_6monthA+probGtoJ_6monthA+p_death)
+  
+  probAHtoA_6monthA<-1-probAHtoJ_6monthA-p_death
+  probBHtoB_6monthA<-1-probBHtoJ_6monthA-p_death
+  probCHtoC_6monthA<-1-probCHtoJ_6monthA-p_death
+  probDHtoD_6monthA<-1-probDHtoJ_6monthA-p_death
+  probEHtoE_6monthA<-1-probEHtoJ_6monthA-p_death
+  probFHtoF_6monthA<-1-probFHtoJ_6monthA-p_death
+  probGHtoG_6monthA<-1-probGHtoJ_6monthA-p_death
+  
+  probAItoA_6month<-1-(p_death+probAItoJ_6month)
+  probBItoB_6month<-1-(p_death+probBItoJ_6month)
+  probCItoC_6month<-1-(p_death+probCItoJ_6month)
+  probDItoD_6month<-1-(p_death+probDItoJ_6month)
+  probEItoE_6month<-1-(p_death+probEItoJ_6month)
+  probFItoF_6month<-1-(p_death+probFItoJ_6month)
+  probGItoG_6month<-1-(p_death+probGItoJ_6month)
     
   #Transition Matrix            
     #Transition Matrix            
@@ -141,16 +167,17 @@ for(j in 1:mcruns){
   
   sum(tot_trans_cost)
   
-  markovtrace["disc"] <- 1 / ((1 + discountrate)^(markovtrace["SixMonths"] * 0.5))
+hcc_cost <- numeric(ncycles) 
+hcc_qaly <- numeric(ncycles)
+for(i in 1:ncycles){ 
+hcc_cost[i] <- ( markovtrace[i, "Cost"] + markovtrace[i + 1, "Cost"] ) / 2 
+hcc_qaly[i] <- ( markovtrace[i, "QALY"] + markovtrace[i + 1, "QALY"] ) / 2 } 
+cycle_midpoint_years <- ((1:ncycles) - 0.5) * 0.5 
+disc <- 1 / ((1 + discountrate)^cycle_midpoint_years)
+disccost_hcc <- hcc_cost * disc 
+discqaly_hcc <- hcc_qaly * disc
+results <- c( sum(disccost_hcc) + (n * costTest) + sum(tot_trans_cost), sum(discqaly_hcc) )
   
-  markovtrace["disccost"] <- markovtrace["Cost"] * markovtrace["disc"]
-  
-  markovtrace["discqaly"] <- markovtrace["QALY"] * markovtrace["disc"]
-  
-  results <- c(
-    sum(head(markovtrace$disccost, ncycles)) + (n * costTest) + sum(tot_trans_cost),
-    sum(head(markovtrace$discqaly, ncycles))
-  )
   mcresults_CLTIrivasptest[j,]<-results
 }
   
