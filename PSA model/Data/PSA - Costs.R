@@ -44,9 +44,9 @@ costD_A<-(costAsp+costAspAE) *rnorm(1,1,0.05102041)
 costD_R<-(costRivAsp+costRivAspAE) *rnorm(1,1,0.05102041)
 
 cost_E<-((14293.65*0.5)*costinflator_2020_21_to_2024)*rnorm(1,1,0.05102041)
-costE_C<-(((14293.65*0.5)*costinflator_2020_21_to_2024) +costClopi+costClopiAE) *rnorm(1,1,0.05102041)
-costE_A<-(((14293.65*0.5)*costinflator_2020_21_to_2024) +costAsp+costAspAE) *rnorm(1,1,0.05102041)
-costE_R<-(((14293.65*0.5)*costinflator_2020_21_to_2024) +costRivAsp+costRivAspAE) *rnorm(1,1,0.05102041)
+costE_C<- cost_E + ((costClopi+costClopiAE) *rnorm(1,1,0.05102041))
+costE_A<- cost_E + ((costAsp+costAspAE) *rnorm(1,1,0.05102041))
+costE_R<- cost_E + ((costRivAsp+costRivAspAE) *rnorm(1,1,0.05102041))
 
 costF_C<-(costClopi+costClopiAE) *rnorm(1,1,0.05102041)
 costF_A<-(costAsp+costAspAE) *rnorm(1,1,0.05102041)
