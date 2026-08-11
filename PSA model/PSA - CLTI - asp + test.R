@@ -157,13 +157,11 @@ for(j in 1:mcruns){
     (markovtrace["VascularDeath"]*qolJ)+
     (markovtrace["OtherDeath"]*qolK)
   
-  tot_trans_cost <- numeric(ncycles)
-  
- for(i in 1:ncycles){
-  df <- 1/(1 + discountrate)^((i-1)/2)   # beginning of cycle i
-  tot_trans_cost[i] <- sum(translist[[i]] * trans_cost_mat) * df
-}
-  sum(tot_trans_cost)
+tot_trans_cost <- numeric(ncycles) 
+for(i in 1:ncycles){ 
+df <- 1 / ((1 + discountrate)^((i - 0.5) * 0.5)) 
+tot_trans_cost[i] <- sum(translist[[i]] * trans_cost_mat) * df }
+sum(tot_trans_cost)
   
 hcc_cost <- numeric(ncycles)
 hcc_qaly <- numeric(ncycles)
