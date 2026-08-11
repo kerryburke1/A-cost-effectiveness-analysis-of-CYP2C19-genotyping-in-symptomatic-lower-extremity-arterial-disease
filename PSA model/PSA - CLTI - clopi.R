@@ -23,21 +23,21 @@ for(j in 1:mcruns){
 
     p_death<-as.numeric(acm_clti[i,2])
   
-  probAtoA_6monthA<-1-(probAtoB_6monthA+probAtoC_6monthA+probAtoE_6monthA+probAtoAH_6monthA+probAtoAI_6monthA+probAtoJ_6monthA+p_death)
-  probBtoB_6monthA<-1-(probBtoD_6monthA+probBtoE_6monthA+probBtoBH_6monthA+probBtoBI_6monthA+probBtoJ_6monthA+p_death)
-  probCtoC_6monthA<-1-(probCtoB_6monthA+probCtoE_6monthA+probCtoG_6monthA+probCtoCH_6monthA+probCtoCI_6monthA+probCtoJ_6monthA+p_death)
-  probDtoD_6monthA<-1-(probDtoE_6monthA+probDtoF_6monthA+probDtoDH_6monthA+probDtoDI_6monthA+probDtoJ_6monthA+p_death)
-  probEtoE_6monthA<-1-(probEtoEH_6monthA+probEtoEI_6monthA+probEtoJ_6monthA+p_death)
-  probFtoF_6monthA<-1-(probFtoE_6monthA+probFtoFH_6monthA+probFtoFI_6monthA+probFtoJ_6monthA+p_death)
-  probGtoG_6monthA<-1-(probGtoB_6monthA+probGtoE_6monthA+probGtoGH_6monthA+probGtoGI_6monthA+probGtoJ_6monthA+p_death)
+  probAtoA_6monthC<-1-(probAtoB_6monthC+probAtoC_6monthC+probAtoE_6monthC+probAtoAH_6monthC+probAtoAI_6monthC+probAtoJ_6monthC+p_death)
+  probBtoB_6monthC<-1-(probBtoD_6monthC+probBtoE_6monthC+probBtoBH_6monthC+probBtoBI_6monthC+probBtoJ_6monthC+p_death)
+  probCtoC_6monthC<-1-(probCtoB_6monthC+probCtoE_6monthC+probCtoG_6monthC+probCtoCH_6monthC+probCtoCI_6monthC+probCtoJ_6monthC+p_death)
+  probDtoD_6monthC<-1-(probDtoE_6monthC+probDtoF_6monthC+probDtoDH_6monthC+probDtoDI_6monthC+probDtoJ_6monthC+p_death)
+  probEtoE_6monthC<-1-(probEtoEH_6monthC+probEtoEI_6monthC+probEtoJ_6monthC+p_death)
+  probFtoF_6monthC<-1-(probFtoE_6monthC+probFtoFH_6monthC+probFtoFI_6monthC+probFtoJ_6monthC+p_death)
+  probGtoG_6monthC<-1-(probGtoB_6monthC+probGtoE_6monthC+probGtoGH_6monthC+probGtoGI_6monthC+probGtoJ_6monthC+p_death)
   
-  probAHtoA_6monthA<-1-probAHtoJ_6monthA-p_death
-  probBHtoB_6monthA<-1-probBHtoJ_6monthA-p_death
-  probCHtoC_6monthA<-1-probCHtoJ_6monthA-p_death
-  probDHtoD_6monthA<-1-probDHtoJ_6monthA-p_death
-  probEHtoE_6monthA<-1-probEHtoJ_6monthA-p_death
-  probFHtoF_6monthA<-1-probFHtoJ_6monthA-p_death
-  probGHtoG_6monthA<-1-probGHtoJ_6monthA-p_death
+  probAHtoA_6monthC<-1-probAHtoJ_6monthC-p_death
+  probBHtoB_6monthC<-1-probBHtoJ_6monthC-p_death
+  probCHtoC_6monthC<-1-probCHtoJ_6monthC-p_death
+  probDHtoD_6monthC<-1-probDHtoJ_6monthC-p_death
+  probEHtoE_6monthC<-1-probEHtoJ_6monthC-p_death
+  probFHtoF_6monthC<-1-probFHtoJ_6monthC-p_death
+  probGHtoG_6monthC<-1-probGHtoJ_6monthC-p_death
   
   probAItoA_6month<-1-(p_death+probAItoJ_6month)
   probBItoB_6month<-1-(p_death+probBItoJ_6month)
