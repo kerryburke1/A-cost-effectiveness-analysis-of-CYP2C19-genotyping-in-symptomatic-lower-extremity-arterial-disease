@@ -174,8 +174,10 @@ for(i in 1:ncycles){
 
 sum(tot_trans_cost)
 
-hcc_cost <- numeric(ncycles) hcc_qaly <- numeric(ncycles)
-for(i in 1:ncycles){ hcc_cost[i] <- ( markovtrace[i, "Cost"] + markovtrace[i + 1, "Cost"] ) / 2 
+hcc_cost <- numeric(ncycles) 
+hcc_qaly <- numeric(ncycles)
+for(i in 1:ncycles){ 
+hcc_cost[i] <- ( markovtrace[i, "Cost"] + markovtrace[i + 1, "Cost"] ) / 2 
 hcc_qaly[i] <- ( markovtrace[i, "QALY"] + markovtrace[i + 1, "QALY"] ) / 2 } 
 cycle_midpoint_years <- ((1:ncycles) - 0.5) * 0.5 
 disc <- 1 / ((1 + discountrate)^cycle_midpoint_years)
